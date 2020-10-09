@@ -62,7 +62,8 @@ export default {
     clipboardDemo: 'Clipboard',
     i18n: '多言語',
     externalLink: '外部リンク',
-    profile: 'プロフィール'
+    profile: 'プロフィール',
+    deviceListings: 'デバイス'
   },
   navbar: {
     dashboard: 'トップ',
@@ -179,5 +180,13 @@ export default {
   },
   error: {
     accountIncorrect: 'ユーザー名又はパスワードが間違っています'
+  },
+  deviceListings: {
+    deviceId: '番号',
+    serialNumber: '通し番号',
+    deviceName: '名',
+    owner: '主人',
+    lastUpdated: '最終更新時刻',
+    selectCompany: '会社を選択'
   }
 }

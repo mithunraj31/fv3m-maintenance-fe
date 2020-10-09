@@ -62,7 +62,8 @@ export default {
     clipboardDemo: 'Clipboard',
     i18n: 'I18n',
     externalLink: 'External Link',
-    profile: 'Profile'
+    profile: 'Profile',
+    deviceListings: 'Device listings'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -179,5 +180,13 @@ export default {
   },
   error: {
     accountIncorrect: 'Username or password incorrect'
+  },
+  deviceListings: {
+    deviceId: 'ID',
+    serialNumber: 'Serial number',
+    deviceName: 'name',
+    owner: 'Owner',
+    lastUpdated: 'Last updated',
+    selectCompany: 'Select company'
   }
 }
