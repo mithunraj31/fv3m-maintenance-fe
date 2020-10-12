@@ -92,7 +92,28 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/device-listings/index'),
         name: 'Devices',
-        meta: { title: 'deviceListings', icon: 'el-icon-mobile', noCache: true }
+        meta: {
+          title: 'deviceListings',
+          icon: 'el-icon-mobile',
+          noCache: true
+        }
+      }
+    ]
+  },
+  {
+    path: '/user',
+    component: Layout,
+    redirect: '/user/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/user-listings/index'),
+        name: 'User',
+        meta: {
+          title: 'userListings',
+          icon: 'el-icon-user',
+          noCache: true
+        }
       }
     ]
   },
@@ -462,11 +483,12 @@ export const asyncRoutes = []
 //   { path: '*', redirect: '/404', hidden: true }
 // ]
 
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes
+  })
 
 const router = createRouter()
 

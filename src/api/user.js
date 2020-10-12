@@ -22,3 +22,18 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function fetchUsers() {
+  return request({
+    url: '/vue-element-admin/users',
+    method: 'get'
+  })
+}
+
+export function fetchUserById(userId) {
+  console.log(`/vue-element-admin/users/${userId}/users`)
+  return request({
+    url: `/vue-element-admin/users/${userId}/users`,
+    method: 'get'
+  })
+}
