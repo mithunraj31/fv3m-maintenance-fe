@@ -90,9 +90,23 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/device-listings/index'),
+        component: () => import('@/views/devices/index'),
         name: 'Devices',
         meta: { title: 'deviceListings', icon: 'el-icon-mobile', noCache: true }
+      },
+      {
+        path: 'new',
+        component: () => import('@/views/devices/new-device/index'),
+        name: 'NewDevice',
+        hidden: true,
+        meta: { title: 'newDevice', noCache: false }
+      },
+      {
+        path: ':id/edit',
+        component: () => import('@/views/devices/edit-device/index'),
+        name: 'EditDevice',
+        hidden: true,
+        meta: { title: 'editDevice', noCache: true }
       }
     ]
   },

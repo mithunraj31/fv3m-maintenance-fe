@@ -63,7 +63,9 @@ export default {
     i18n: '多言語',
     externalLink: '外部リンク',
     profile: 'プロフィール',
-    deviceListings: 'デバイス'
+    deviceListings: 'デバイス',
+    newDevice: 'デバイスを追加',
+    editDevice: 'デバイスを編集'
   },
   navbar: {
     dashboard: 'トップ',
@@ -176,17 +178,55 @@ export default {
     sidebarLogo: 'Sidebar Logo'
   },
   message: {
-    languageChanged: '言語が変更されました'
+    languageChanged: '言語が変更されました',
+    deviceNameRequired: 'デバイス名は必要があります',
+    serialNumberRequired: '通し番号は必要があります'
   },
   error: {
     accountIncorrect: 'ユーザー名又はパスワードが間違っています'
   },
-  deviceListings: {
-    deviceId: '番号',
-    serialNumber: '通し番号',
-    deviceName: '名',
-    owner: '主人',
-    lastUpdated: '最終更新時刻',
-    selectCompany: '会社を選択'
+  device: {
+    listings: {
+      deviceId: '番号',
+      serialNumber: '通し番号',
+      deviceName: '名',
+      owner: '主人',
+      lastUpdated: '最終更新時刻',
+      selectCompany: '会社を選択',
+      newDevice: 'デバイスを追加',
+      editDevice: 'デバイスを編集'
+    },
+    new: {
+      title: 'デバイスを追加'
+    },
+    edit: {
+      title: 'デバイスを編集'
+    },
+    form: {
+      deviceName: 'デバイス名',
+      serialNumber: '通し番号',
+      registerDate: '登録日',
+      isMutated: '変異',
+      mutatedDate: '変更された日付',
+      deviceStatus: 'デバイス状態',
+      status: {
+        pending: '保留中',
+        maintaining: '維持中',
+        broken: '壊れた',
+        unknown: '不詳'
+      },
+      operatingSystem: 'OS',
+      android: 'アンドロイド',
+      embedded: '埋め込み'
+    }
+  },
+  general: {
+    reset: 'リセット',
+    save: '保存',
+    images: '写真',
+    description: '内容',
+    edit: '編集',
+    delete: '削除',
+    action: '活動'
   }
 }

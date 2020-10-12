@@ -63,7 +63,9 @@ export default {
     i18n: 'I18n',
     externalLink: 'External Link',
     profile: 'Profile',
-    deviceListings: 'Device listings'
+    deviceListings: 'Device listings',
+    newDevice: 'New device',
+    editDevice: 'Edit device'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -176,17 +178,53 @@ export default {
     sidebarLogo: 'Sidebar Logo'
   },
   message: {
-    languageChanged: 'Language has been changed'
+    languageChanged: 'Language has been changed',
+    deviceNameRequired: 'Device name is required',
+    serialNumberRequired: 'Serial number is required'
   },
   error: {
     accountIncorrect: 'Username or password incorrect'
   },
-  deviceListings: {
-    deviceId: 'ID',
-    serialNumber: 'Serial number',
-    deviceName: 'name',
-    owner: 'Owner',
-    lastUpdated: 'Last updated',
-    selectCompany: 'Select company'
+  device: {
+    listings: {
+      deviceId: 'ID',
+      serialNumber: 'Serial number',
+      deviceName: 'Name',
+      owner: 'Owner',
+      lastUpdated: 'Last updated',
+      selectCompany: 'Select company'
+    },
+    new: {
+      title: 'New Deivce'
+    },
+    edit: {
+      title: 'Edit Device'
+    },
+    form: {
+      deviceName: 'Device Name',
+      serialNumber: 'Serial Nubmer',
+      registDate: 'Regist date',
+      isMutated: 'Mutate',
+      mutatedDate: 'Mutated Date',
+      deviceStatus: 'Device status',
+      status: {
+        pending: 'Pending',
+        maintaining: 'Maintaining',
+        broken: 'Broken',
+        unknown: 'Unkwon'
+      },
+      operatingSystem: 'Operating system',
+      android: 'Android',
+      embedded: 'Embedded'
+    }
+  },
+  general: {
+    reset: 'Reset',
+    save: 'Save',
+    images: 'Images',
+    description: 'Description',
+    edit: 'Edit',
+    delete: 'Delete',
+    action: 'Action'
   }
 }
