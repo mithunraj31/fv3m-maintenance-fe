@@ -8,7 +8,6 @@ export function fetchDevices() {
 }
 
 export function fetchDeviceByCustomerId(customerId) {
-  console.log(`/vue-element-admin/customers/${customerId}/devices`)
   return request({
     url: `/vue-element-admin/customers/${customerId}/devices`,
     method: 'get'

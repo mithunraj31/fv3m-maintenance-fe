@@ -3,19 +3,7 @@
   <div class="app-container">
     <el-row class="filter-section">
       <el-col :span="20">
-        <el-select
-          v-model="selectedCustomerId"
-          filterable
-          :placeholder="this.$t('device.listings.selectCompany')"
-          @change="onSelectedCustomer"
-        >
-          <el-option
-            v-for="customer in customers"
-            :key="customer.name"
-            :label="customer.name"
-            :value="customer.id"
-          />
-        </el-select>
+        <customer-selector @onCustomerSelected="onCustomerSelected" />
       </el-col>
       <el-col :span="4" class="new-device-button-section">
         <el-button type="primary" @click="$router.push('/devices/new') ">{{ this.$t('device.new.title') }}</el-button>
@@ -80,18 +68,16 @@
 </template>
 
 <script>
-import { fetchCustomers } from '@/api/customer'
 import { fetchDevices, fetchDeviceByCustomerId } from '@/api/device'
 import Pagination from '@/components/Pagination'
+import CustomerSelector from './components/customer-selector'
 
 export default {
   name: 'DeviceListings',
-  components: { Pagination },
+  components: { Pagination, CustomerSelector },
   data() {
     return {
       devices: null,
-      customers: null,
-      selectedCustomerId: null,
       total: 0,
       listQuery: {
         page: 1,
@@ -100,26 +86,21 @@ export default {
     }
   },
   created() {
-    this.intialData()
-    this.onSelectedCustomer()
+    this.onCustomerSelected(0)
   },
   methods: {
-    async intialData() {
-      const { data } = await fetchCustomers()
-      this.customers = data
-    },
     mapDevicesToDataTable(device) {
       return {
         id: device.id,
         name: device.name,
         serialNumber: device.serialNumber,
         updated: device.updated,
-        owner: device.updatedUser.name
+        owner: device.updatedUser ? device.updatedUser.name : ''
       }
     },
-    async onSelectedCustomer() {
-      if (this.selectedCustomerId && this.selectedCustomerId > 0) {
-        const { data } = await fetchDeviceByCustomerId(this.selectedCustomerId)
+    async onCustomerSelected(selectedCustomerId) {
+      if (selectedCustomerId && selectedCustomerId > 0) {
+        const { data } = await fetchDeviceByCustomerId(selectedCustomerId)
         this.devices = data.map(this.mapDevicesToDataTable)
       } else {
         const { data } = await fetchDevices()
