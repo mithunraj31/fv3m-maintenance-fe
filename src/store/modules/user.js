@@ -1,5 +1,5 @@
-import { login, logout, getInfo } from '@/api/user'
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { login } from '@/api/user'
+import { getToken, setToken, removeToken, setUserInfo, getUserInfo, removeUserInfo } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
 const state = {
@@ -25,6 +25,9 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
+  },
+  SET_USER_ID: (state, id) => {
+    state.userId = id
   }
 }
 
@@ -33,10 +36,18 @@ const actions = {
   login({ commit }, userInfo) {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
-        commit('SET_TOKEN', data.token)
-        setToken(data.token)
+      login({ email: username.trim(), password: password }).then(response => {
+        const data = response
+        commit('SET_TOKEN', data.access_token)
+
+        commit('SET_ROLES', [data.user.role])
+        commit('SET_NAME', data.user.name)
+        commit('SET_USER_ID', data.user.id)
+        commit('SET_AVATAR', `https://ui-avatars.com/api/?name=${data.user.name}`)
+        commit('SET_INTRODUCTION', data.user.email)
+
+        setToken(data.access_token)
+        setUserInfo(data.user)
         resolve()
       }).catch(error => {
         reject(error)
@@ -47,48 +58,35 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token).then(response => {
-        const { data } = response
+      try {
+        const userInfo = getUserInfo()
 
-        if (!data) {
-          reject('Verification failed, please Login again.')
-        }
-
-        const { roles, name, avatar, introduction } = data
-
-        // roles must be a non-empty array
-        if (!roles || roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
-        }
-
-        commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        commit('SET_INTRODUCTION', introduction)
-        resolve(data)
-      }).catch(error => {
-        reject(error)
-      })
+        commit('SET_ROLES', [userInfo.role])
+        commit('SET_NAME', userInfo.name)
+        commit('SET_USER_ID', userInfo.id)
+        commit('SET_AVATAR', `https://ui-avatars.com/api/?name=${userInfo.name}`)
+        commit('SET_INTRODUCTION', userInfo.email)
+        resolve(userInfo)
+      } catch (error) {
+        reject()
+      }
     })
   },
 
   // user logout
   logout({ commit, state, dispatch }) {
     return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
-        commit('SET_TOKEN', '')
-        commit('SET_ROLES', [])
-        removeToken()
-        resetRouter()
+      commit('SET_TOKEN', '')
+      commit('SET_ROLES', [])
+      removeToken()
+      resetRouter()
+      removeUserInfo()
 
-        // reset visited views and cached views
-        // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
-        dispatch('tagsView/delAllViews', null, { root: true })
+      // reset visited views and cached views
+      // to fixed https://github.com/PanJiaChen/vue-element-admin/issues/2485
+      dispatch('tagsView/delAllViews', null, { root: true })
 
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })
+      resolve()
     })
   },
 
