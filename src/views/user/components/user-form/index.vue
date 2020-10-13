@@ -10,13 +10,19 @@
             <el-input v-model="form.email" />
           </el-form-item>
           <el-form-item :label="this.$t('user.form.userRole')" prop="role">
-            <el-input v-model="form.role" />
+            <el-select v-model="form.role" filterable :placeholder="this.$t('user.form.userRole')">
+              <el-option label="Admin" value="1" />
+              <el-option label="User" value="2" />
+            </el-select>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="this.onSubmit">{{
               this.$t("general.save")
             }}</el-button>
             <el-button>{{ this.$t("general.reset") }}</el-button>
+            <el-button type="primary" @click.native.prevent="$router.push(`/user`)">
+              {{ $t("general.back") }}
+            </el-button>
           </el-form-item>
         </el-form>
       </el-col>

@@ -242,6 +242,7 @@ export default {
     description: '内容',
     edit: '編集',
     delete: '削除',
-    action: '活動'
+    action: '活動',
+    back: '戻る'
   }
 }

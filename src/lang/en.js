@@ -238,6 +238,7 @@ export default {
     description: 'Description',
     edit: 'Edit',
     delete: 'Delete',
-    action: 'Action'
+    action: 'Action',
+    back: 'Return'
   }
 }
