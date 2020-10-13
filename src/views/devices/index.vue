@@ -40,6 +40,10 @@
           <el-table-column :label="this.$t('general.action')">
             <template slot-scope="scope">
               <el-button
+                size="small"
+                @click.native.prevent="$router.push(`/devices/${scope.row.id}/maintenance-histories`)"
+              >{{ $t('general.history') }}</el-button>
+              <el-button
                 type="primary"
                 size="small"
                 @click.native.prevent="$router.push(`/devices/${scope.row.id}/edit`)"

@@ -18,7 +18,6 @@
                 </span>
               </div>
             </el-upload>
-
           </el-form-item>
           <el-form-item :label="this.$t('device.form.deviceName')" prop="name">
             <el-input v-model="form.name" />
@@ -71,7 +70,7 @@
             <el-input v-model="form.desc" type="textarea" />
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="this.onSubmit">{{ this.$t('general.save') }}</el-button>
+            <el-button type="primary" @click="onSubmit">{{ this.$t('general.save') }}</el-button>
             <el-button>{{ this.$t('general.reset') }}</el-button>
           </el-form-item>
         </el-form>
@@ -88,7 +87,20 @@
 export default {
   name: 'DeviceForm',
   props: {
-    device: Object
+    device: {
+      type: Object,
+      default: () => {
+        return {
+          name: '',
+          status: [],
+          serialNumber: '',
+          registerDate: '',
+          mutated: false,
+          os: '',
+          description: ''
+        }
+      }
+    }
   },
   data() {
     const validateName = (rule, value, callback) => {
@@ -136,7 +148,6 @@ export default {
   methods: {
     onSubmit() {
       this.$refs.form.validate((valid) => {
-        console.log(this.form.name, valid)
         if (valid) {
           this.$emit('onFormSubmit', this.form)
         }

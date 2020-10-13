@@ -203,7 +203,7 @@ export default {
     form: {
       deviceName: 'Device Name',
       serialNumber: 'Serial Nubmer',
-      registDate: 'Regist date',
+      registerDate: 'Regist date',
       isMutated: 'Mutate',
       mutatedDate: 'Mutated Date',
       deviceStatus: 'Device status',
@@ -225,6 +225,7 @@ export default {
     description: 'Description',
     edit: 'Edit',
     delete: 'Delete',
-    action: 'Action'
+    action: 'Action',
+    cancel: 'Cancel'
   }
 }
