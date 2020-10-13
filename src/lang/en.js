@@ -64,7 +64,9 @@ export default {
     externalLink: 'External Link',
     profile: 'Profile',
     deviceListings: 'Device listings',
-    userListings: 'User listings'
+    userListings: 'User listings',
+    newUser: 'New user',
+    editDevice: 'Edit user'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -190,7 +192,11 @@ export default {
     sidebarLogo: 'Sidebar Logo'
   },
   message: {
-    languageChanged: 'Language has been changed'
+    languageChanged: 'Language has been changed',
+    userNameRequired: 'User Name is Required',
+    emailRequired: 'Email is Required',
+    roleRequired: 'Role is Required'
+
   },
   error: {
     accountIncorrect: 'Username or password incorrect'
@@ -204,12 +210,34 @@ export default {
     selectCompany: 'Select company'
   },
 
-  userListings: {
-    userId: 'ID',
-    userName: 'Name',
-    userEmail: 'Email',
-    userRole: 'Role',
-    userUpdated: 'Last updated',
-    selectUser: 'Select user'
+  user: {
+    listings: {
+      userId: 'ID',
+      userName: 'Name',
+      userEmail: 'Email',
+      userRole: 'Role',
+      userUpdated: 'Last updated',
+      selectUser: 'Select user'
+    },
+    new: {
+      title: 'New User'
+    },
+    edit: {
+      title: 'Edit User'
+    },
+    form: {
+      userName: 'User Name',
+      userEmail: 'Email',
+      userRole: 'Role'
+    }
+  },
+  general: {
+    reset: 'Reset',
+    save: 'Save',
+    images: 'Images',
+    description: 'Description',
+    edit: 'Edit',
+    delete: 'Delete',
+    action: 'Action'
   }
 }

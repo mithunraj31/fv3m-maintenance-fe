@@ -107,13 +107,27 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/user-listings/index'),
+        component: () => import('@/views/user/index'),
         name: 'User',
         meta: {
           title: 'userListings',
           icon: 'el-icon-user',
           noCache: true
         }
+      },
+      {
+        path: 'new',
+        component: () => import('@/views/user/new-user/index'),
+        name: 'NewUser',
+        hidden: true,
+        meta: { title: 'newUser', noCache: false }
+      },
+      {
+        path: ':id/edit',
+        component: () => import('@/views/user/edit-user/index'),
+        name: 'EditUser',
+        hidden: true,
+        meta: { title: 'editUser', noCache: true }
       }
     ]
   },

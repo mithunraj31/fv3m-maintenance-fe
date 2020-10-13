@@ -31,9 +31,9 @@ export function fetchUsers() {
 }
 
 export function fetchUserById(userId) {
-  console.log(`/vue-element-admin/users/${userId}/users`)
+  console.log(`/vue-element-admin/users/${userId}`)
   return request({
-    url: `/vue-element-admin/users/${userId}/users`,
+    url: `/vue-element-admin/users/${userId}`,
     method: 'get'
   })
 }

@@ -64,7 +64,9 @@ export default {
     externalLink: '外部リンク',
     profile: 'プロフィール',
     deviceListings: 'デバイス',
-    userListings: 'ユーザー'
+    userListings: 'ユーザー',
+    newUser: 'ユーザーを追加する',
+    editDevice: 'ユーザーの編集'
   },
   navbar: {
     dashboard: 'トップ',
@@ -186,7 +188,10 @@ export default {
     sidebarLogo: 'Sidebar Logo'
   },
   message: {
-    languageChanged: '言語が変更されました'
+    languageChanged: '言語が変更されました',
+    userNameRequired: 'ユーザー名が必要です',
+    emailRequired: 'メールが必要です',
+    roleRequired: '役割が必要です'
   },
   error: {
     accountIncorrect: 'ユーザー名又はパスワードが間違っています'
@@ -207,5 +212,36 @@ export default {
     userRole: '役割',
     userUpdated: '最終更新時刻',
     selectUser: 'ユーザーを選択'
+  },
+
+  user: {
+    listings: {
+      userId: '番号',
+      userName: '名',
+      userEmail: 'Eメール',
+      userRole: '役割',
+      userUpdated: '最終更新時刻',
+      selectUser: 'ユーザーを選択'
+    },
+    new: {
+      title: 'ユーザーを追加する'
+    },
+    edit: {
+      title: 'ユーザーの編集'
+    },
+    form: {
+      userName: '名',
+      userEmail: 'Eメール',
+      userRole: '役割'
+    }
+  },
+  general: {
+    reset: 'リセット',
+    save: '保存',
+    images: '写真',
+    description: '内容',
+    edit: '編集',
+    delete: '削除',
+    action: '活動'
   }
 }
