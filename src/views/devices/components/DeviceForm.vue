@@ -7,19 +7,16 @@
             <customer-selector :customer-id="device.customerId" @onCustomerSelected="onCustomerSelected" />
           </el-form-item>
           <el-form-item :label="this.$t('general.images')">
-            <el-upload action="#" list-type="picture-card" :auto-upload="false">
+            <el-upload
+              action="/api/v1/images"
+              list-type="picture-card"
+              multiple
+              :on-change="onFilesChanged"
+              :auto-upload="true"
+              :on-success="onUploaded"
+              :on-error="onUploadFailed"
+            >
               <i slot="default" class="el-icon-plus" />
-              <div slot="file" slot-scope="{file}">
-                <img class="el-upload-list__item-thumbnail" :src="file.url" alt="">
-                <span class="el-upload-list__item-actions">
-                  <span class="el-upload-list__item-preview" @click="handlePictureCardPreview(file)">
-                    <i class="el-icon-zoom-in" />
-                  </span>
-                  <span v-if="!disabled" class="el-upload-list__item-delete" @click="handleRemove(file)">
-                    <i class="el-icon-delete" />
-                  </span>
-                </span>
-              </div>
             </el-upload>
           </el-form-item>
           <el-form-item :label="this.$t('device.form.deviceName')" prop="name">
@@ -138,7 +135,8 @@ export default {
         serialNumber: [
           { required: true, trigger: 'blur', validator: validateSerialNumber }
         ]
-      }
+      },
+      fileList: []
     }
   },
   watch: {
@@ -166,6 +164,15 @@ export default {
     },
     onCustomerSelected(selectedCustomerId) {
       this.form.customerId = selectedCustomerId
+    },
+    onFilesChanged(file, fileList) {
+      console.log('changed', file, fileList)
+    },
+    onUploaded(response, file, fileList) {
+      console.log('success', response, file, fileList)
+    },
+    onUploadFailed(err, file, fileList) {
+      console.log('error', err, file, fileList)
     }
   }
 }
