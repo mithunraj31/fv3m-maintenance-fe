@@ -99,7 +99,7 @@ export const constantRoutes = [
         component: () => import('@/views/devices/new-device/index'),
         name: 'NewDevice',
         hidden: true,
-        meta: { title: 'newDevice', noCache: false }
+        meta: { title: 'newDevice', noCache: true }
       },
       {
         path: ':id/edit',

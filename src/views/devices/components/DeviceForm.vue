@@ -3,6 +3,9 @@
     <el-row>
       <el-col :span="12">
         <el-form ref="form" :rules="formRules" :model="form" label-width="120px">
+          <el-form-item :label="this.$t('general.company')">
+            <customer-selector :customer-id="device.customerId" @onCustomerSelected="onCustomerSelected" />
+          </el-form-item>
           <el-form-item :label="this.$t('general.images')">
             <el-upload action="#" list-type="picture-card" :auto-upload="false">
               <i slot="default" class="el-icon-plus" />
@@ -25,12 +28,6 @@
           <el-form-item :label="this.$t('device.form.serialNumber')" prop="serialNumber">
             <el-input v-model="form.serialNumber" />
           </el-form-item>
-          <!-- <el-form-item label="Activity zone">
-            <el-select v-model="form.region" placeholder="please select your zone">
-              <el-option label="Zone one" value="shanghai"></el-option>
-              <el-option label="Zone two" value="beijing"></el-option>
-            </el-select>
-          </el-form-item> -->
           <el-form-item :label="this.$t('device.form.registerDate')">
             <el-date-picker
               v-model="form.registerDate"
@@ -53,12 +50,12 @@
 
           </el-form-item>
           <el-form-item :label="this.$t('device.form.deviceStatus')">
-            <el-checkbox-group v-model="form.status">
-              <el-checkbox :label="this.$t('device.form.status.pending')" />
-              <el-checkbox :label="this.$t('device.form.status.maintaining')" />
-              <el-checkbox :label="this.$t('device.form.status.broken')" />
-              <el-checkbox :label="this.$t('device.form.status.unknown')" />
-            </el-checkbox-group>
+            <el-radio-group v-model="form.status">
+              <el-radio :label="1">{{ this.$t('device.form.status.pending') }}</el-radio>
+              <el-radio :label="2">{{ this.$t('device.form.status.maintaining') }}</el-radio>
+              <el-radio :label="3">{{ this.$t('device.form.status.broken') }}</el-radio>
+              <el-radio :label="0">{{ this.$t('device.form.status.unknown') }}</el-radio>
+            </el-radio-group>
           </el-form-item>
           <el-form-item :label="this.$t('device.form.operatingSystem')">
             <el-radio-group v-model="form.os">
@@ -83,21 +80,24 @@
 </template>
 
 <script>
-
+import CustomerSelector from './CustomerSelector'
 export default {
   name: 'DeviceForm',
+  components: { CustomerSelector },
   props: {
     device: {
       type: Object,
       default: () => {
         return {
+          id: 0,
           name: '',
-          status: [],
+          status: 0,
           serialNumber: '',
           registerDate: '',
           mutated: false,
           os: '',
-          description: ''
+          description: '',
+          customerId: 0
         }
       }
     }
@@ -120,13 +120,15 @@ export default {
 
     return {
       form: {
+        id: 0,
         name: '',
-        status: [],
+        status: 0,
         serialNumber: '',
         registerDate: '',
         mutated: false,
         os: '',
-        description: ''
+        description: '',
+        customerId: 0
       },
       dialogVisible: false,
       formRules: {
@@ -141,8 +143,10 @@ export default {
   },
   watch: {
     device: function(newDevice, oldDevice) {
+      this.form.id = newDevice.id
       this.form.name = newDevice.name
-      this.form.serialNumber = newDevice.serialNumber
+      this.form.status = newDevice.status
+      this.form.customerId = newDevice.customerId
     }
   },
   methods: {
@@ -159,6 +163,9 @@ export default {
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url
       this.dialogVisible = true
+    },
+    onCustomerSelected(selectedCustomerId) {
+      this.form.customerId = selectedCustomerId
     }
   }
 }

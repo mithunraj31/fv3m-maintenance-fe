@@ -21,19 +21,35 @@ import { fetchCustomers } from '@/api/customer'
 
 export default {
   name: 'CustomerSelector',
+  props: {
+    customerId: {
+      type: Number,
+      default() {
+        return 0
+      }
+    }
+  },
   data() {
     return {
       customers: null,
       selectedCustomerId: null
     }
   },
-  async created() {
-    const { data } = await fetchCustomers()
-    this.customers = data
+  watch: {
+    customerId(newVal, oldVal) {
+      this.selectedCustomerId = newVal
+    }
+  },
+  created() {
+    this.fetchData()
   },
   methods: {
     onCustomerSelected() {
       this.$emit('onCustomerSelected', this.selectedCustomerId)
+    },
+    async fetchData() {
+      const { data } = await fetchCustomers()
+      this.customers = data
     }
   }
 }

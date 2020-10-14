@@ -31,7 +31,7 @@
 
 <script>
 const carouselPrefix = '?imageView2/2/h/440'
-import MemoTimeline from '../memo-timeline'
+import MemoTimeline from './MemoTimline'
 
 export default {
   name: 'History',

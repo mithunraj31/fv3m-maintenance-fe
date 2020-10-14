@@ -180,14 +180,19 @@ export default {
   message: {
     languageChanged: 'Language has been changed',
     deviceNameRequired: 'Device name is required',
-    serialNumberRequired: 'Serial number is required'
+    serialNumberRequired: 'Serial number is required',
+    deviceHasBeenCreated: 'Device has been created',
+    somethingWentWrong: 'Something went wrong',
+    confirmDelete: 'Are you sure you want to delete {0}?',
+    deviceHasBeenDeleted: 'Device has been deleted',
+    deviceHasBeenEdited: 'Device has been edited'
   },
   error: {
     accountIncorrect: 'Username or password incorrect'
   },
   device: {
     listings: {
-      deviceId: 'ID',
+      deviceId: 'Device ID',
       serialNumber: 'Serial number',
       deviceName: 'Name',
       owner: 'Owner',
@@ -226,6 +231,11 @@ export default {
     edit: 'Edit',
     delete: 'Delete',
     action: 'Action',
-    cancel: 'Cancel'
+    cancel: 'Cancel',
+    confirm: 'Confirm',
+    warning: 'Warning',
+    id: 'ID',
+    history: 'History',
+    company: 'Company'
   }
 }

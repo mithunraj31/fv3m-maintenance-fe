@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import DeviceCard from '../components/device-card'
-import History from '../components/history'
+import DeviceCard from '../components/DeviceCard'
+import History from '../components/History'
 import Pagination from '@/components/Pagination'
 
 export default {

@@ -180,14 +180,19 @@ export default {
   message: {
     languageChanged: '言語が変更されました',
     deviceNameRequired: 'デバイス名は必要があります',
-    serialNumberRequired: '通し番号は必要があります'
+    serialNumberRequired: '通し番号は必要があります',
+    deviceHasBeenCreated: 'デバイスが作成されました',
+    somethingWentWrong: '何かがうまくいきませんでした',
+    confirmDelete: '「{0}」を削除してもよろしいでしょうか',
+    deviceHasBeenDeleted: 'デバイスが削除されました',
+    deviceHasBeenEdited: 'バイスが編集されました'
   },
   error: {
     accountIncorrect: 'ユーザー名又はパスワードが間違っています'
   },
   device: {
     listings: {
-      deviceId: '番号',
+      deviceId: 'デバイス番号',
       serialNumber: '通し番号',
       deviceName: '名',
       owner: '主人',
@@ -228,6 +233,11 @@ export default {
     edit: '編集',
     delete: '削除',
     action: '活動',
-    cancel: 'キャンセル'
+    cancel: 'キャンセル',
+    confirm: '確認',
+    warning: '注意',
+    id: '番号',
+    history: '履歴',
+    company: '会社'
   }
 }
