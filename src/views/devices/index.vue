@@ -96,8 +96,15 @@ export default {
       loading: false
     }
   },
-  created() {
-    this.fetchListings(0)
+  async created() {
+    this.listQuery = {
+      page: +(this.$route.query.page || this.listQuery.page),
+      limit: +(this.$route.query.limit || this.listQuery.limit)
+    }
+    this.$router.push({
+      query: this.listQuery
+    })
+    await this.fetchListings(0)
   },
   methods: {
     mapDevicesToDataTable(device) {
@@ -121,6 +128,9 @@ export default {
       this.devices = data.map(this.mapDevicesToDataTable)
       this.total = total
       this.loading = false
+      this.$router.push({
+        query: this.listQuery
+      })
     },
     onDeleteDeviceClicked(id) {
       let deleteConfirmMessage = this.$t('message.confirmDelete')

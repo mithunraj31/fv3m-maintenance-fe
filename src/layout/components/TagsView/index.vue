@@ -12,7 +12,7 @@
         @click.middle.native="!isAffix(tag)?closeSelectedTag(tag):''"
         @contextmenu.prevent.native="openMenu(tag,$event)"
       >
-        {{ generateTitle(tag.title) }}
+        {{ formatTitle(generateTitle(tag.title), tag) }}
         <span v-if="!isAffix(tag)" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
       </router-link>
     </scroll-pane>
@@ -194,6 +194,13 @@ export default {
     },
     handleScroll() {
       this.closeMenu()
+    },
+
+    formatTitle(title, tag) {
+      if (tag.params && tag.params.id) {
+        return String.format(title, tag.params.id)
+      }
+      return title
     }
   }
 }

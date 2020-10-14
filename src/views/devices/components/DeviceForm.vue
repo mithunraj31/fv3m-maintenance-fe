@@ -68,7 +68,7 @@
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSubmit">{{ this.$t('general.save') }}</el-button>
-            <el-button>{{ this.$t('general.reset') }}</el-button>
+            <el-button @click="$router.go(-1)">{{ this.$t('general.cancel') }}</el-button>
           </el-form-item>
         </el-form>
       </el-col>

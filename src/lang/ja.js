@@ -65,7 +65,9 @@ export default {
     profile: 'プロフィール',
     deviceListings: 'デバイス',
     newDevice: 'デバイスを追加',
-    editDevice: 'デバイスを編集'
+    editDevice: 'デバイスID:{0}を編集',
+    maintenanceHistoryBreadcrumbTitle: 'maintenanceHistoryBreadcrumbTitle',
+    editDeviceBreadcrumbTitle: 'デバイスを編集'
   },
   navbar: {
     dashboard: 'トップ',

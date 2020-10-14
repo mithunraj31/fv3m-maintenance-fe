@@ -65,7 +65,9 @@ export default {
     profile: 'Profile',
     deviceListings: 'Device listings',
     newDevice: 'New device',
-    editDevice: 'Edit device'
+    editDevice: 'Edit device id: {0}',
+    maintenanceHistoryBreadcrumbTitle: 'maintenanceHistoryBreadcrumbTitle',
+    editDeviceBreadcrumbTitle: 'Edit device'
   },
   navbar: {
     dashboard: 'Dashboard',

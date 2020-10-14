@@ -106,14 +106,14 @@ export const constantRoutes = [
         component: () => import('@/views/devices/edit-device/index'),
         name: 'EditDevice',
         hidden: true,
-        meta: { title: 'editDevice', noCache: true }
+        meta: { title: 'editDevice', noCache: true, breadcrumbTitle: 'editDeviceBreadcrumbTitle' }
       },
       {
         path: ':id/maintenance-histories',
         component: () => import('@/views/devices/maintenance-history/index'),
         name: 'MaintenanceHistory',
         hidden: true,
-        meta: { title: 'maintenanceHistory', noCache: true }
+        meta: { title: 'maintenanceHistory', noCache: true, breadcrumbTitle: 'maintenanceHistoryBreadcrumbTitle' }
       }
     ]
   },
