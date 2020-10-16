@@ -66,8 +66,9 @@ export default {
     deviceListings: 'デバイス',
     newDevice: 'デバイスを追加',
     editDevice: 'デバイスID:{0}を編集',
-    maintenanceHistoryBreadcrumbTitle: 'maintenanceHistoryBreadcrumbTitle',
-    editDeviceBreadcrumbTitle: 'デバイスを編集'
+    editDeviceBreadcrumbTitle: 'デバイスを編集',
+    maintenanceHistoryBreadcrumbTitle: 'メンテナンス履歴',
+    maintenanceHistory: 'デバイスID「{0}」のメンテナンス履歴'
   },
   navbar: {
     dashboard: 'トップ',
@@ -187,7 +188,8 @@ export default {
     somethingWentWrong: '何かがうまくいきませんでした',
     confirmDelete: '「{0}」を削除してもよろしいでしょうか',
     deviceHasBeenDeleted: 'デバイスが削除されました',
-    deviceHasBeenEdited: 'バイスが編集されました'
+    deviceHasBeenEdited: 'バイスが編集されました',
+    memoHasBeenCreated: 'メモが作成されました'
   },
   error: {
     accountIncorrect: 'ユーザー名又はパスワードが間違っています'
@@ -225,6 +227,20 @@ export default {
       operatingSystem: 'OS',
       android: 'アンドロイド',
       embedded: '埋め込み'
+    },
+    maintenance: {
+      card: {
+        title: 'デバイス情報',
+        basicInfo: '基本情報',
+        notfound: '履歴が見つかりません'
+      },
+      history: {
+        viewMemo: 'メモを見る'
+      },
+      memo: {
+        textarea: 'メモを入力',
+        notfound: 'メモが見つかりません'
+      }
     }
   },
   general: {
@@ -241,7 +257,11 @@ export default {
     id: '番号',
     history: '履歴',
     company: '会社',
-    image: '写真'
+    image: '写真',
+    createdAt: '作成日',
+    updatedAt: '編集日',
+    newest: '最新',
+    oldest: '最古'
   },
   notfound: {
     oops: 'おっと',

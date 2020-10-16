@@ -1,58 +1,72 @@
 <template>
-  <div class="user-activity">
-    <div class="post">
-      <div class="user-block">
-        <img class="img-circle" :src="historyUserAvatar">
-        <span class="username text-muted">{{ historyUserName }}</span>
-        <span class="description">{{ historyCreated }}</span>
+  <div>
+    <div v-for="history in histories" :key="history.id" class="user-activity">
+      <div class="post">
+        <div class="user-block">
+          <img class="img-circle" :src="getUserAvatar(history.user.name)">
+          <span class="username text-muted">{{ history.user.name }}</span>
+          <span class="description">{{ $t('general.createdAt') }} {{ formatDate(history.created_at) }}</span>
+          <span class="description">{{ $t('general.updatedAt') }} {{ formatDate(history.updated_at) }}</span>
+        </div>
+        <p>{{ history.description }}</p>
+        <div v-if="history.images && history.images.length > 0" class="user-images">
+          <el-carousel :interval="6000" type="card" height="220px">
+            <el-carousel-item v-for="image in history.images" :key="image.id">
+              <img :src="image.url" class="image">
+            </el-carousel-item>
+          </el-carousel>
+        </div>
+        <ul class="list-inline">
+          <li @click="openMemoDialog(history.id)">
+            <span class="link-black text-sm">
+              <i class="el-icon-chat-line-square" />
+              {{ $t('device.maintenance.history.viewMemo') }}
+            </span>
+          </li>
+        </ul>
       </div>
-      <p>{{ historyDetail }}</p>
-      <div class="user-images">
-        <el-carousel :interval="6000" type="card" height="220px">
-          <el-carousel-item v-for="item in carouselImages" :key="item">
-            <img :src="item+carouselPrefix" class="image">
-          </el-carousel-item>
-        </el-carousel>
-      </div>
-      <ul class="list-inline">
-        <li @click="openMemoDialog(historyId)">
-          <span class="link-black text-sm">
-            <i class="el-icon-chat-line-square" />
-            {{ this.$t('device.history.viewMemo') }}
-          </span>
-        </li>
-      </ul>
+      <el-dialog :title="''" :visible.sync="isMemoTimelineVisible" width="80%" :destroy-on-close="true">
+        <memo-timeline :maintenance-id="maintenanceId" @cancelClicked="isMemoTimelineVisible = false" />
+      </el-dialog>
     </div>
-    <el-dialog :title="''" :visible.sync="isMemoTimelineVisible" width="80%">
-      <memo-timeline />
-    </el-dialog>
   </div>
 </template>
 
 <script>
-const carouselPrefix = '?imageView2/2/h/440'
 import MemoTimeline from './MemoTimline'
+import { getUserAvatar } from '@/utils/user'
+import moment from 'moment'
 
 export default {
   name: 'History',
   components: { MemoTimeline },
+  props: {
+    histories: {
+      type: Array,
+      default() {
+        return []
+      }
+    }
+  },
   data() {
     return {
-      memoTimeline: [],
       isMemoTimelineVisible: false,
-      carouselImages: [
-        'https://wpimg.wallstcn.com/9679ffb0-9e0b-4451-9916-e21992218054.jpg',
-        'https://wpimg.wallstcn.com/bcce3734-0837-4b9f-9261-351ef384f75a.jpg',
-        'https://wpimg.wallstcn.com/d1d7b033-d75e-4cd6-ae39-fcd5f1c0a7c5.jpg',
-        'https://wpimg.wallstcn.com/50530061-851b-4ca5-9dc5-2fead928a939.jpg'
-      ],
-      carouselPrefix,
-      activitis: []
+      maintenanceId: 0
+    }
+  },
+  watch: {
+    histories(newHistories, oldHistories) {
+      this.histories = newHistories
     }
   },
   methods: {
-    openMemoDialog(mentenanceId) {
+    getUserAvatar,
+    openMemoDialog(maintenanceId) {
       this.isMemoTimelineVisible = true
+      this.maintenanceId = maintenanceId
+    },
+    formatDate(date) {
+      return moment(String(date)).format('YYYY/MM/DD hh:mm')
     }
   }
 }
@@ -122,11 +136,12 @@ export default {
     }
 
     .link-black {
-
+      cursor: pointer;
       &:hover,
       &:focus {
         color: #999;
       }
+
     }
   }
 

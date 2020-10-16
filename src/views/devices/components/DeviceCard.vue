@@ -5,16 +5,18 @@
     </div>
 
     <div class="user-profile">
-      <div class="box-center">
-        <pan-thumb :image="''" :height="'100px'" :width="'100px'" :hoverable="false" />
-      </div>
+      <el-carousel indicator-position="outside">
+        <el-carousel-item v-for="img in device.images" :key="img.id">
+          <img :src="img.url" class="image">
+        </el-carousel-item>
+      </el-carousel>
     </div>
 
     <div class="user-bio">
       <div class="user-education user-bio-section">
         <div class="user-bio-section-header">
           <svg-icon icon-class="documentation" />
-          <span>{{ this.$t('device.maintenance.card.basic.Info') }}</span>
+          <span>{{ this.$t('device.maintenance.card.basicInfo') }}</span>
         </div>
         <div class="user-bio-section-body">
           <el-row class="basic-info-row">
@@ -70,11 +72,8 @@
 </template>
 
 <script>
-import PanThumb from '@/components/PanThumb'
-
 export default {
   name: 'DeviceCard',
-  components: { PanThumb },
   props: {
     device: {
       type: Object,
@@ -86,13 +85,19 @@ export default {
           registerDate: '',
           mutated: false,
           os: '',
-          description: ''
+          description: '',
+          images: []
         }
       }
     }
   },
   computed: {
 
+  },
+  watch: {
+    device: function(newDevice, oldDevice) {
+      this.device = newDevice
+    }
   }
 }
 </script>

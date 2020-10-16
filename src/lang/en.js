@@ -66,8 +66,9 @@ export default {
     deviceListings: 'Device listings',
     newDevice: 'New device',
     editDevice: 'Edit device id: {0}',
-    maintenanceHistoryBreadcrumbTitle: 'maintenanceHistoryBreadcrumbTitle',
-    editDeviceBreadcrumbTitle: 'Edit device'
+    editDeviceBreadcrumbTitle: 'Edit device',
+    maintenanceHistoryBreadcrumbTitle: 'Maintenance History',
+    maintenanceHistory: 'Maintenance History Device ID: {0}'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -187,7 +188,8 @@ export default {
     somethingWentWrong: 'Something went wrong',
     confirmDelete: 'Are you sure you want to delete {0}?',
     deviceHasBeenDeleted: 'Device has been deleted',
-    deviceHasBeenEdited: 'Device has been edited'
+    deviceHasBeenEdited: 'Device has been edited',
+    MemoHasBeenCreated: 'Memo has been created'
   },
   error: {
     accountIncorrect: 'Username or password incorrect'
@@ -223,6 +225,20 @@ export default {
       operatingSystem: 'Operating system',
       android: 'Android',
       embedded: 'Embedded'
+    },
+    maintenance: {
+      card: {
+        title: 'Device infomation',
+        basicInfo: 'Basic infomation',
+        notfound: 'History notfound'
+      },
+      history: {
+        viewMemo: 'View memo'
+      },
+      memo: {
+        textarea: 'write your memo',
+        notfound: 'Momo notfound'
+      }
     }
   },
   general: {
@@ -239,7 +255,11 @@ export default {
     id: 'ID',
     history: 'History',
     company: 'Company',
-    image: 'Image'
+    image: 'Image',
+    createdAt: 'Created at',
+    updatedAt: 'Updated at',
+    newest: 'Newest',
+    oldest: 'Oldest'
   },
   notfound: {
     oops: 'Opps',
