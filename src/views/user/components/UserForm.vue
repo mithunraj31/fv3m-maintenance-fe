@@ -16,7 +16,7 @@
             <el-input v-model="form.confirmPassword" />
           </el-form-item>
           <el-form-item :label="this.$t('user.form.userRole')" prop="role">
-            <el-select v-model="form.role" filterable :placeholder="this.$t('user.form.userRole')">
+            <el-select v-model="form.role" :rules="formRules" filterable :placeholder="this.$t('user.form.userRole')">
               <el-option label="Admin" value="1" />
               <el-option label="User" value="2" />
             </el-select>
@@ -103,7 +103,7 @@ export default {
         }],
         role: [{
           required: true,
-          trigger: 'blur',
+          trigger: 'change',
           validator: validateRole
         }],
         password: [{

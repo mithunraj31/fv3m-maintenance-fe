@@ -6,10 +6,8 @@
 </template>
 
 <script>
-import UserForm from '../components/user-form'
-import {
-  fetchUsers
-} from '@/api/user'
+import UserForm from '../components/UserForm'
+import { fetchUsers } from '@/api/user'
 
 export default {
   name: 'EditUser',
@@ -22,10 +20,8 @@ export default {
     }
   },
   async created() {
-    const {
-      data
-    } = await fetchUsers()
-    this.user = data.filter(x => x.id === +this.$route.params.id)[0]
+    const { data } = await fetchUsers()
+    this.user = data.filter((x) => x.id === +this.$route.params.id)[0]
   },
   methods: {
     onFormSubmit(form) {}
