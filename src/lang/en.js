@@ -195,7 +195,10 @@ export default {
     languageChanged: 'Language has been changed',
     userNameRequired: 'User Name is Required',
     emailRequired: 'Email is Required',
-    roleRequired: 'Role is Required'
+    roleRequired: 'Role is Required',
+    passwordRequired: 'Password is Required',
+    confirmPasswordRequired: 'Confirm Password is Required',
+    passwordMismatch: 'Confirm Password should be same as Password'
 
   },
   error: {
@@ -228,7 +231,9 @@ export default {
     form: {
       userName: 'User Name',
       userEmail: 'Email',
-      userRole: 'Role'
+      userRole: 'Role',
+      userPassword: 'Password',
+      userConfirmPassword: 'Confirm Password'
     }
   },
   general: {

@@ -191,7 +191,10 @@ export default {
     languageChanged: '言語が変更されました',
     userNameRequired: 'ユーザー名が必要です',
     emailRequired: 'メールが必要です',
-    roleRequired: '役割が必要です'
+    roleRequired: '役割が必要です',
+    passwordRequired: 'パスワードが必要です',
+    confirmPasswordRequired: 'パスワードが必要であることを確認する',
+    passwordMismatch: 'パスワードの確認はパスワードと同じである必要があります'
   },
   error: {
     accountIncorrect: 'ユーザー名又はパスワードが間違っています'
@@ -232,7 +235,9 @@ export default {
     form: {
       userName: '名',
       userEmail: 'Eメール',
-      userRole: '役割'
+      userRole: '役割',
+      userPassword: 'パスワード',
+      userConfirmPassword: 'パスワードを認証する'
     }
   },
   general: {

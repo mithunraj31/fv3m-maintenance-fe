@@ -419,6 +419,7 @@ module.exports = [
             name: "Mithun",
             email: "mbel001@mbel.co.jp",
             role: "admin",
+            password: "123456",
             created: "Thu Oct 08 2020 14:56:03 GMT+0900",
             updated: "Thu Oct 08 2020 14:56:03 GMT+0900",
             createdUser: {
