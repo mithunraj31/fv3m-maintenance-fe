@@ -25,7 +25,8 @@ export function newDevice(device) {
   const data = {
     name: device.name,
     customer_id: device.customerId,
-    status_id: device.status
+    status_id: device.status,
+    imageUrls: device.imageUrls.map(x => x.url)
   }
 
   return request({
@@ -40,7 +41,8 @@ export function editDevice(device) {
     id: device.id,
     name: device.name,
     customer_id: device.customerId,
-    status_id: device.status
+    status_id: device.status,
+    imageUrls: device.imageUrls.map(x => x.url)
   }
 
   return request({

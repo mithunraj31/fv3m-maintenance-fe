@@ -238,6 +238,13 @@ export default {
     warning: 'Warning',
     id: 'ID',
     history: 'History',
-    company: 'Company'
+    company: 'Company',
+    image: 'Image'
+  },
+  notfound: {
+    oops: 'Opps',
+    largeText: 'Don\'t have this page,',
+    smallText: 'Please check that the URL you entered is correct, or click the button below to return to the homepage.',
+    backToTopPage: 'Back to home'
   }
 }

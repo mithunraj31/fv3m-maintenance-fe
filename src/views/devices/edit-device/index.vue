@@ -25,7 +25,10 @@ export default {
       id: +this.$route.params.id,
       name: data.name,
       status: data.status_id,
-      customerId: data.customer_id
+      customerId: data.customer_id,
+      fileList: data.images && data.images.length > 0 ? data.images.map(x => {
+        return { name: x.url, url: x.url }
+      }) : []
     }
     this.loading = false
   },

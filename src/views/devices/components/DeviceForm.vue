@@ -8,13 +8,18 @@
           </el-form-item>
           <el-form-item :label="this.$t('general.images')">
             <el-upload
-              action="/api/v1/images"
+              :action="apiEndpoint + '/images'"
               list-type="picture-card"
               multiple
-              :on-change="onFilesChanged"
               :auto-upload="true"
               :on-success="onUploaded"
               :on-error="onUploadFailed"
+              :on-remove="onRemveFile"
+              :before-remove="beforRemove"
+              name="image"
+              accept="image/png,image/jpg,image/jpeg"
+              :headers="{ 'Authorization': `Bearer ${token}` }"
+              :file-list="fileList"
             >
               <i slot="default" class="el-icon-plus" />
             </el-upload>
@@ -70,14 +75,12 @@
         </el-form>
       </el-col>
     </el-row>
-    <el-dialog :visible.sync="dialogVisible">
-      <img width="100%" :src="dialogImageUrl" alt="">
-    </el-dialog>
   </div>
 </template>
 
 <script>
 import CustomerSelector from './CustomerSelector'
+
 export default {
   name: 'DeviceForm',
   components: { CustomerSelector },
@@ -136,7 +139,17 @@ export default {
           { required: true, trigger: 'blur', validator: validateSerialNumber }
         ]
       },
-      fileList: []
+      fileList: [],
+      newFileList: []
+
+    }
+  },
+  computed: {
+    apiEndpoint() {
+      return this.$store.getters.apiEndpoint
+    },
+    token() {
+      return this.$store.getters.token
     }
   },
   watch: {
@@ -145,34 +158,46 @@ export default {
       this.form.name = newDevice.name
       this.form.status = newDevice.status
       this.form.customerId = newDevice.customerId
+      this.fileList = newDevice.fileList
     }
   },
   methods: {
     onSubmit() {
       this.$refs.form.validate((valid) => {
         if (valid) {
-          this.$emit('onFormSubmit', this.form)
+          this.$emit('onFormSubmit', {
+            ...this.form,
+            imageUrls: [...this.fileList, ...this.newFileList]
+          })
         }
       })
-    },
-    dialogImageUrl() {
-
-    },
-    handlePictureCardPreview(file) {
-      this.dialogImageUrl = file.url
-      this.dialogVisible = true
     },
     onCustomerSelected(selectedCustomerId) {
       this.form.customerId = selectedCustomerId
     },
-    onFilesChanged(file, fileList) {
-      console.log('changed', file, fileList)
-    },
     onUploaded(response, file, fileList) {
-      console.log('success', response, file, fileList)
+      this.newFileList.push({
+        name: file.name,
+        url: response.uri
+      })
     },
-    onUploadFailed(err, file, fileList) {
-      console.log('error', err, file, fileList)
+    onRemveFile(file, fileList) {
+      this.newFileList = []
+      this.fileList = fileList.map(x => {
+        return {
+          name: x.name,
+          url: x.response ? x.response.uri : x.url
+        }
+      })
+    },
+    onUploadFailed() {
+      this.$message({
+        message: this.$t('message.somethingWentWrong'),
+        type: 'error'
+      })
+    },
+    beforRemove(file) {
+      return this.$confirm(String.format(this.$t('message.confirmDelete'), this.$t('general.image')))
     }
   }
 }

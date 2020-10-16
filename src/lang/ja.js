@@ -240,6 +240,13 @@ export default {
     warning: '注意',
     id: '番号',
     history: '履歴',
-    company: '会社'
+    company: '会社',
+    image: '写真'
+  },
+  notfound: {
+    oops: 'おっと',
+    largeText: 'こちらのページがありませんが、',
+    smallText: '入力したURLが正しいことを確認するか、下のボタンをクリックしてトップページページに戻ってください',
+    backToTopPage: 'トップページへ'
   }
 }

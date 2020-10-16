@@ -209,7 +209,10 @@ export const constantRoutes = [
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
-export const asyncRoutes = []
+export const asyncRoutes = [
+  // 404 page must be placed at the end !!!
+  { path: '*', redirect: '/404', hidden: true }
+]
 
 // export const originalAsyncRoutes = [
 //   {
@@ -479,8 +482,6 @@ export const asyncRoutes = []
 //     ]
 //   },
 
-//   // 404 page must be placed at the end !!!
-//   { path: '*', redirect: '/404', hidden: true }
 // ]
 
 const createRouter = () => new Router({
