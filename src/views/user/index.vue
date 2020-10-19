@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-row class="filter-section">
       <el-col :span="20">
-        <el-select v-model="selectedUserId" filterable :placeholder="this.$t('user.listings.selectUser')" @change="onSelectedUser">
+        <el-select v-model="selectedUserId" filterable :placeholder="this.$t('user.listings.selectUser')" @change="fetchListings">
           <el-option v-for="user in users" :key="user.name" :label="user.name" :value="user.id" />
         </el-select>
       </el-col>
@@ -31,13 +31,7 @@
               >
                 {{ $t("general.edit") }}
               </el-button>
-              <el-button
-                type="danger"
-                size="small"
-                @click.native.prevent="
-                  $router.push(`/user/${scope.row.id}/edit`)
-                "
-              >
+              <el-button type="danger" size="small" @click="onDeleteUserClicked(scope.row.id)">
                 {{ $t("general.delete") }}
               </el-button>
             </template>
@@ -52,14 +46,28 @@
 <script>
 import {
   fetchUsers,
-  fetchUserById
+  fetchUserById,
+  deleteUser
 } from '@/api/user'
 import Pagination from '@/components/Pagination'
+import moment from 'moment'
+import permission from '@/directive/permission/index.js'
 
 export default {
   name: 'UserListings',
   components: {
     Pagination
+  },
+  directives: {
+    permission
+  },
+  props: {
+    userId: {
+      type: Number,
+      default() {
+        return 0
+      }
+    }
   },
   data() {
     return {
@@ -68,44 +76,89 @@ export default {
       total: 0,
       listQuery: {
         page: 1,
-        limit: 20
-      }
+        limit: 10
+      },
+      loading: false
     }
   },
-  created() {
-    this.intialData()
-    this.onSelectedUser()
+  watch: {
+    userId(newVal, oldVal) {
+      this.selectedUserId = newVal
+    }
+  },
+  async created() {
+    this.listQuery = {
+      page: +(this.$route.query.page || this.listQuery.page),
+      limit: +(this.$route.query.limit || this.listQuery.limit)
+    }
+    this.$router.push({
+      query: this.listQuery
+    })
+    await this.fetchListings(0)
   },
   methods: {
-    async intialData() {
-      const {
-        data
-      } = await fetchUsers()
-      this.users = data
-    },
     mapUsersToDataTable(user) {
       return {
         id: user.id,
         name: user.name,
         email: user.email,
         role: user.role,
-        updated: user.updated
+        updated: moment(String(user.updated_at)).format('YYYY/MM/DD hh:mm')
       }
     },
-    async onSelectedUser() {
+    async fetchListings(selectedUserId) {
+      let response = null
+      this.loading = true
       if (this.selectedUserId && this.selectedUserId > 0) {
-        const {
-          data
-        } = await fetchUserById(this.selectedUserId)
-        this.users = data.map(this.mapUsersToDataTable)
+        response = await fetchUserById(selectedUserId, this.listQuery)
+        console.log()
       } else {
-        const {
-          data
-        } = await fetchUsers()
-        this.users = data.map(this.mapUsersToDataTable)
+        response = await fetchUsers(this.listQuery)
       }
+      const {
+        data,
+        total
+      } = response
+      this.users = data.map(this.mapUsersToDataTable)
+      this.total = total
+      this.loading = false
+      this.$router.push({
+        query: this.listQuery
+      })
+    },
+    onDeleteUserClicked(id) {
+      let deleteConfirmMessage = this.$t('message.confirmDelete')
+      deleteConfirmMessage = String.format(
+        deleteConfirmMessage,
+        `${this.$t('user.listings.userId')}: ${id}`
+      )
 
-      this.total = this.users.length
+      this.$confirm(deleteConfirmMessage, this.$t('general.warning'), {
+        confirmButtonText: this.$t('general.confirm'),
+        cancelButtonText: this.$t('general.cancel'),
+        type: 'warning'
+      }).then(() => {
+        this.deleteConfirmed(id)
+      })
+    },
+    deleteConfirmed(id) {
+      deleteUser(id)
+        .then(() => {
+          this.$message({
+            message: this.$t('message.userHasBeenDeleted'),
+            type: 'success'
+          })
+          this.fetchListings(0)
+        })
+        .catch(() => {
+          this.$message({
+            message: this.$t('message.somethingWentWrong'),
+            type: 'danger'
+          })
+        })
+    },
+    async onPaged() {
+      await this.fetchListings(0)
     }
   }
 }

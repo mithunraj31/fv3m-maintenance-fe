@@ -66,7 +66,10 @@ export default {
     deviceListings: 'デバイス',
     userListings: 'ユーザー',
     newUser: 'ユーザーを追加する',
-    editDevice: 'ユーザーの編集'
+    newDevice: 'デバイスを追加',
+    editDevice: 'デバイスID:{0}を編集',
+    maintenanceHistoryBreadcrumbTitle: 'maintenanceHistoryBreadcrumbTitle',
+    editDeviceBreadcrumbTitle: 'デバイスを編集'
   },
   navbar: {
     dashboard: 'トップ',
@@ -194,7 +197,14 @@ export default {
     roleRequired: '役割が必要です',
     passwordRequired: 'パスワードが必要です',
     confirmPasswordRequired: 'パスワードが必要であることを確認する',
-    passwordMismatch: 'パスワードの確認はパスワードと同じである必要があります'
+    passwordMismatch: 'パスワードの確認はパスワードと同じである必要があります',
+    deviceNameRequired: 'デバイス名は必要があります',
+    serialNumberRequired: '通し番号は必要があります',
+    deviceHasBeenCreated: 'デバイスが作成されました',
+    somethingWentWrong: '何かがうまくいきませんでした',
+    confirmDelete: '「{0}」を削除してもよろしいでしょうか',
+    deviceHasBeenDeleted: 'デバイスが削除されました',
+    deviceHasBeenEdited: 'バイスが編集されました'
   },
   error: {
     accountIncorrect: 'ユーザー名又はパスワードが間違っています'
@@ -240,6 +250,41 @@ export default {
       userConfirmPassword: 'パスワードを認証する'
     }
   },
+
+  device: {
+    listings: {
+      deviceId: 'デバイス番号',
+      serialNumber: '通し番号',
+      deviceName: '名',
+      owner: '主人',
+      lastUpdated: '最終更新時刻',
+      selectCompany: '会社を選択',
+      newDevice: 'デバイスを追加'
+    },
+    new: {
+      title: 'デバイスを追加'
+    },
+    edit: {
+      title: 'デバイスを編集'
+    },
+    form: {
+      deviceName: 'デバイス名',
+      serialNumber: '通し番号',
+      registerDate: '登録日',
+      isMutated: '変異',
+      mutatedDate: '変更された日付',
+      deviceStatus: 'デバイス状態',
+      status: {
+        pending: '保留中',
+        maintaining: '維持中',
+        broken: '壊れた',
+        unknown: '不詳'
+      },
+      operatingSystem: 'OS',
+      android: 'アンドロイド',
+      embedded: '埋め込み'
+    }
+  },
   general: {
     reset: 'リセット',
     save: '保存',
@@ -248,6 +293,20 @@ export default {
     edit: '編集',
     delete: '削除',
     action: '活動',
-    back: '戻る'
+    back: '戻る',
+    cancel: 'キャンセル',
+    confirm: '確認',
+    warning: '注意',
+    id: '番号',
+    history: '履歴',
+    company: '会社',
+    image: '写真'
+  },
+  notfound: {
+    oops: 'おっと',
+    largeText: 'こちらのページがありませんが、',
+    smallText: '入力したURLが正しいことを確認するか、下のボタンをクリックしてトップページページに戻ってください',
+    backToTopPage: 'トップページへ'
   }
 }
+

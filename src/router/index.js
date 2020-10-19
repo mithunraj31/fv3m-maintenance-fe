@@ -90,13 +90,30 @@ export const constantRoutes = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/device-listings/index'),
+        component: () => import('@/views/devices/index'),
         name: 'Devices',
-        meta: {
-          title: 'deviceListings',
-          icon: 'el-icon-mobile',
-          noCache: true
-        }
+        meta: { title: 'deviceListings', icon: 'el-icon-mobile', noCache: true }
+      },
+      {
+        path: 'new',
+        component: () => import('@/views/devices/new-device/index'),
+        name: 'NewDevice',
+        hidden: true,
+        meta: { title: 'newDevice', noCache: true }
+      },
+      {
+        path: ':id/edit',
+        component: () => import('@/views/devices/edit-device/index'),
+        name: 'EditDevice',
+        hidden: true,
+        meta: { title: 'editDevice', noCache: true, breadcrumbTitle: 'editDeviceBreadcrumbTitle' }
+      },
+      {
+        path: ':id/maintenance-histories',
+        component: () => import('@/views/devices/maintenance-history/index'),
+        name: 'MaintenanceHistory',
+        hidden: true,
+        meta: { title: 'maintenanceHistory', noCache: true, breadcrumbTitle: 'maintenanceHistoryBreadcrumbTitle' }
       }
     ]
   },
@@ -127,7 +144,7 @@ export const constantRoutes = [
         component: () => import('@/views/user/edit-user/index'),
         name: 'EditUser',
         hidden: true,
-        meta: { title: 'editUser', noCache: true }
+        meta: { title: 'editUser', icon: 'el-icon-mobile', noCache: true }
       }
     ]
   },
@@ -223,7 +240,10 @@ export const constantRoutes = [
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
-export const asyncRoutes = []
+export const asyncRoutes = [
+  // 404 page must be placed at the end !!!
+  { path: '*', redirect: '/404', hidden: true }
+]
 
 // export const originalAsyncRoutes = [
 //   {
@@ -493,8 +513,6 @@ export const asyncRoutes = []
 //     ]
 //   },
 
-//   // 404 page must be placed at the end !!!
-//   { path: '*', redirect: '/404', hidden: true }
 // ]
 
 const createRouter = () =>

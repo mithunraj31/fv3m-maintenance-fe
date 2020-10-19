@@ -15,7 +15,11 @@ router.beforeEach(async(to, from, next) => {
   NProgress.start()
 
   // set page title
-  document.title = getPageTitle(to.meta.title)
+  let param
+  if (to.params && to.params.id) {
+    param = to.params.id
+  }
+  document.title = getPageTitle(to.meta.title, param)
 
   // determine whether the user has logged in
   const hasToken = getToken()
@@ -34,10 +38,9 @@ router.beforeEach(async(to, from, next) => {
         try {
           // get user info
           // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
-          const { roles } = await store.dispatch('user/getInfo')
-
+          const { role } = await store.dispatch('user/getInfo')
           // generate accessible routes map based on roles
-          const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
+          const accessRoutes = await store.dispatch('permission/generateRoutes', [role])
 
           // dynamically add accessible routes
           router.addRoutes(accessRoutes)

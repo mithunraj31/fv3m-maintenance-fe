@@ -66,7 +66,10 @@ export default {
     deviceListings: 'Device listings',
     userListings: 'User listings',
     newUser: 'New user',
-    editDevice: 'Edit user'
+    editUser: 'Edit user',
+    newDevice: 'New device',
+    maintenanceHistoryBreadcrumbTitle: 'maintenanceHistoryBreadcrumbTitle',
+    editDeviceBreadcrumbTitle: 'Edit device'
   },
   navbar: {
     dashboard: 'Dashboard',
@@ -198,8 +201,15 @@ export default {
     roleRequired: 'Role is Required',
     passwordRequired: 'Password is Required',
     confirmPasswordRequired: 'Confirm Password is Required',
-    passwordMismatch: 'Confirm Password should be same as Password'
+    passwordMismatch: 'Confirm Password should be same as Password',
 
+    deviceNameRequired: 'Device name is required',
+    serialNumberRequired: 'Serial number is required',
+    deviceHasBeenCreated: 'Device has been created',
+    somethingWentWrong: 'Something went wrong',
+    confirmDelete: 'Are you sure you want to delete {0}?',
+    deviceHasBeenDeleted: 'Device has been deleted',
+    deviceHasBeenEdited: 'Device has been edited'
   },
   error: {
     accountIncorrect: 'Username or password incorrect'
@@ -236,6 +246,40 @@ export default {
       userConfirmPassword: 'Confirm Password'
     }
   },
+
+  device: {
+    listings: {
+      deviceId: 'Device ID',
+      serialNumber: 'Serial number',
+      deviceName: 'Name',
+      owner: 'Owner',
+      lastUpdated: 'Last updated',
+      selectCompany: 'Select company'
+    },
+    new: {
+      title: 'New Deivce'
+    },
+    edit: {
+      title: 'Edit Device'
+    },
+    form: {
+      deviceName: 'Device Name',
+      serialNumber: 'Serial Nubmer',
+      registerDate: 'Regist date',
+      isMutated: 'Mutate',
+      mutatedDate: 'Mutated Date',
+      deviceStatus: 'Device status',
+      status: {
+        pending: 'Pending',
+        maintaining: 'Maintaining',
+        broken: 'Broken',
+        unknown: 'Unkwon'
+      },
+      operatingSystem: 'Operating system',
+      android: 'Android',
+      embedded: 'Embedded'
+    }
+  },
   general: {
     reset: 'Reset',
     save: 'Save',
@@ -244,6 +288,20 @@ export default {
     edit: 'Edit',
     delete: 'Delete',
     action: 'Action',
-    back: 'Return'
+    back: 'Return',
+    cancel: 'Cancel',
+    confirm: 'Confirm',
+    warning: 'Warning',
+    id: 'ID',
+    history: 'History',
+    company: 'Company',
+    image: 'Image'
+  },
+  notfound: {
+    oops: 'Opps',
+    largeText: 'Don\'t have this page,',
+    smallText: 'Please check that the URL you entered is correct, or click the button below to return to the homepage.',
+    backToTopPage: 'Back to home'
   }
 }
+

@@ -1,32 +1,33 @@
 <template>
-  <div class="app-container">
-    <h3>{{ this.$t("user.new.title") }}</h3>
-    <user-form @onFormSubmit="onFormSubmit" />
+  <div v-loading="loading" class="app-container">
+    <h3>{{ this.$t('device.new.title') }}</h3>
+    <device-form @onFormSubmit="onFormSubmit" />
   </div>
 </template>
 
 <script>
-import UserForm from '../components/UserForm'
-import {
-  newUser
-} from '@/api/user'
+import DeviceForm from '../components/DeviceForm'
+import { newDevice } from '@/api/device'
 
 export default {
-  name: 'NewUser',
-  components: {
-    UserForm
+  name: 'NewDevice',
+  components: { DeviceForm },
+  data() {
+    return {
+      loading: false
+    }
   },
   methods: {
     onFormSubmit(form) {
       this.loading = true
-      newUser(form)
-        .then((response) => {
+      newDevice(form)
+        .then(response => {
           this.loading = false
           this.$message({
             message: this.$t('message.deviceHasBeenCreated'),
             type: 'success'
           })
-          this.$router.push('/users')
+          this.$router.push('/devices')
         })
         .catch(() => {
           this.loading = false
@@ -40,4 +41,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

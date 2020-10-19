@@ -18,11 +18,6 @@ const constantRoutes = [
     hidden: true
   },
   {
-    path: '/user',
-    component: 'components/user-management/index',
-    hidden: true,
-  },
-  {
     path: '/auth-redirect',
     component: 'views/login/auth-redirect',
     hidden: true

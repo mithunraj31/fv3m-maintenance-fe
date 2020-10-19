@@ -7,7 +7,10 @@
 
 <script>
 import UserForm from '../components/UserForm'
-import { fetchUsers } from '@/api/user'
+import {
+  fetchUserById,
+  editUser
+} from '@/api/user'
 
 export default {
   name: 'EditUser',
@@ -16,15 +19,43 @@ export default {
   },
   data() {
     return {
-      user: {}
+      user: {},
+      loading: false
     }
   },
-  async created() {
-    const { data } = await fetchUsers()
-    this.user = data.filter((x) => x.id === +this.$route.params.id)[0]
+  async mounted() {
+    this.loading = true
+    const {
+      data
+    } = await fetchUserById(+this.$route.params.id)
+    this.user = {
+      id: +this.$route.params.id,
+      name: data.name,
+      email: data.email,
+      role: data.role
+    }
+    this.loading = false
   },
   methods: {
-    onFormSubmit(form) {}
+    onFormSubmit(form) {
+      this.loading = true
+      editUser(form)
+        .then(() => {
+          this.loading = false
+          this.$message({
+            message: this.$t('message.deviceHasBeenCreated'),
+            type: 'success'
+          })
+          this.$router.push('/users')
+        })
+        .catch(() => {
+          this.loading = false
+          this.$message({
+            message: this.$t('message.somethingWentWrong'),
+            type: 'error'
+          })
+        })
+    }
   }
 }
 </script>

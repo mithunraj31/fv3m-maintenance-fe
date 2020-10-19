@@ -9,26 +9,26 @@
           <el-form-item :label="this.$t('user.form.userEmail')" prop="email">
             <el-input v-model="form.email" />
           </el-form-item>
+          <el-form-item :label="this.$t('user.form.userRole')" prop="role">
+            <el-select v-model="form.role" :rules="formRules" filterable :placeholder="this.$t('user.form.userRole')">
+              <el-option label="admin" value="admin" />
+              <el-option label="user" value="user" />
+            </el-select>
+          </el-form-item>
+
           <el-form-item :label="this.$t('user.form.userPassword')" prop="password">
             <el-input v-model="form.password" />
           </el-form-item>
           <el-form-item :label="this.$t('user.form.userConfirmPassword')" prop="confirmPassword">
             <el-input v-model="form.confirmPassword" />
           </el-form-item>
-          <el-form-item :label="this.$t('user.form.userRole')" prop="role">
-            <el-select v-model="form.role" :rules="formRules" filterable :placeholder="this.$t('user.form.userRole')">
-              <el-option label="Admin" value="1" />
-              <el-option label="User" value="2" />
-            </el-select>
-          </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="this.onSubmit">{{
               this.$t("general.save")
             }}</el-button>
-            <el-button>{{ this.$t("general.reset") }}</el-button>
-            <el-button type="primary" @click.native.prevent="$router.push(`/user`)">
-              {{ $t("general.back") }}
-            </el-button>
+            <el-button @click="$router.go(-1)">{{
+              this.$t("general.cancel")
+            }}</el-button>
           </el-form-item>
         </el-form>
       </el-col>
@@ -40,7 +40,19 @@
 export default {
   name: 'UserForm',
   props: {
-    user: Object
+    user: {
+      type: Object,
+      default: () => {
+        return {
+          id: 0,
+          name: '',
+          email: '',
+          role: 'user',
+          password: '',
+          confirmPassword: ''
+        }
+      }
+    }
   },
   data() {
     const validateName = (rule, value, callback) => {
@@ -83,6 +95,7 @@ export default {
 
     return {
       form: {
+        id: 0,
         name: '',
         email: '',
         role: '',
@@ -120,12 +133,13 @@ export default {
     }
   },
   watch: {
-    user: function(newDevice, oldDevice) {
-      this.form.name = newDevice.name
-      this.form.email = newDevice.email
-      this.form.role = newDevice.role
-      this.form.password = newDevice.password
-      this.form.confirmPassword = newDevice.password
+    user: function(newUser, oldUser) {
+      this.form.id = newUser.id
+      this.form.name = newUser.name
+      this.form.email = newUser.email
+      this.form.role = newUser.role
+      this.form.password = newUser.password
+      this.form.confirmPassword = newUser.password
     }
   },
   methods: {
@@ -133,7 +147,9 @@ export default {
       this.$refs.form.validate((valid) => {
         console.log(this.form.name, valid)
         if (valid) {
-          this.$emit('onFormSubmit', this.form)
+          this.$emit('onFormSubmit', {
+            ...this.form
+          })
         }
       })
     }
