@@ -5,11 +5,17 @@
     </div>
 
     <div class="user-profile">
-      <el-carousel indicator-position="outside">
-        <el-carousel-item v-for="img in device.images" :key="img.id">
-          <img :src="img.url" class="image">
-        </el-carousel-item>
+      <el-carousel v-if="device.images && device.images.length > 0" indicator-position="outside">
+        <el-carousel-item
+          v-for="img in device.images"
+          :key="img.id"
+          class="device-image"
+          :style="{ 'background-image': `url(${img.url})` }"
+        />
       </el-carousel>
+      <div v-if="!device.images || device.images.length == 0" class="no-image">
+        <h2>{{ $t('device.maintenance.card.noImage') }}</h2>
+      </div>
     </div>
 
     <div class="user-bio">
@@ -163,5 +169,19 @@ export default {
 
 .basic-info-row {
   margin-top: 10px;
+}
+
+.device-image {
+  background-size: cover;
+  background-repeat:  no-repeat;
+  background-position: center center;
+}
+
+.no-image {
+  background: #d3dce6;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

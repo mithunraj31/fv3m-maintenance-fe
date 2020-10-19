@@ -189,7 +189,9 @@ export default {
     confirmDelete: '「{0}」を削除してもよろしいでしょうか',
     deviceHasBeenDeleted: 'デバイスが削除されました',
     deviceHasBeenEdited: 'バイスが編集されました',
-    memoHasBeenCreated: 'メモが作成されました'
+    memoHasBeenCreated: 'メモが作成されました',
+    memoHasBeenUpdated: 'メモが編集されました',
+    memoHasBeenDeleted: 'メモが削除されました'
   },
   error: {
     accountIncorrect: 'ユーザー名又はパスワードが間違っています'
@@ -232,14 +234,18 @@ export default {
       card: {
         title: 'デバイス情報',
         basicInfo: '基本情報',
-        notfound: '履歴が見つかりません'
+        notfound: '履歴が見つかりません',
+        noImage: '写真がなし'
       },
       history: {
         viewMemo: 'メモを見る'
       },
       memo: {
         textarea: 'メモを入力',
-        notfound: 'メモが見つかりません'
+        notfound: 'メモが見つかりません',
+        newMomo: 'メモを追加',
+        editMemo: 'メモを編集',
+        memo: 'メモ'
       }
     }
   },

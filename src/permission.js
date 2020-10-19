@@ -10,6 +10,16 @@ NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
 
+const getAccessRoutesByRole = async() => {
+  // get user info
+  // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
+  const { role } = await store.dispatch('user/getInfo')
+
+  // generate accessible routes map based on roles
+  const accessRoutes = await store.dispatch('permission/generateRoutes', [role])
+  return accessRoutes
+}
+
 router.beforeEach(async(to, from, next) => {
   // start progress bar
   NProgress.start()
@@ -33,15 +43,16 @@ router.beforeEach(async(to, from, next) => {
       // determine whether the user has obtained his permission roles through getInfo
       const hasRoles = store.getters.roles && store.getters.roles.length > 0
       if (hasRoles) {
+        if (!store.getters.permission_routes ||
+          store.getters.permission_routes.length === 0) {
+          const accessRoutes = await getAccessRoutesByRole()
+          // dynamically add accessible routes
+          router.addRoutes(accessRoutes)
+        }
         next()
       } else {
         try {
-          // get user info
-          // note: roles must be a object array! such as: ['admin'] or ,['developer','editor']
-          const { role } = await store.dispatch('user/getInfo')
-          // generate accessible routes map based on roles
-          const accessRoutes = await store.dispatch('permission/generateRoutes', [role])
-
+          const accessRoutes = await getAccessRoutesByRole()
           // dynamically add accessible routes
           router.addRoutes(accessRoutes)
 

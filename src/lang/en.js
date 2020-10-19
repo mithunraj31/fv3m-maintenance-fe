@@ -189,7 +189,9 @@ export default {
     confirmDelete: 'Are you sure you want to delete {0}?',
     deviceHasBeenDeleted: 'Device has been deleted',
     deviceHasBeenEdited: 'Device has been edited',
-    MemoHasBeenCreated: 'Memo has been created'
+    MemoHasBeenCreated: 'Memo has been created',
+    memoHasBeenUpdated: 'Memo has been updated',
+    memoHasBeenDeleted: 'Memo has been deleted'
   },
   error: {
     accountIncorrect: 'Username or password incorrect'
@@ -230,14 +232,18 @@ export default {
       card: {
         title: 'Device infomation',
         basicInfo: 'Basic infomation',
-        notfound: 'History notfound'
+        notfound: 'History notfound',
+        noImage: 'No image'
       },
       history: {
         viewMemo: 'View memo'
       },
       memo: {
         textarea: 'write your memo',
-        notfound: 'Momo notfound'
+        notfound: 'Momo notfound',
+        newMomo: 'New memo',
+        editMemo: 'Edit memo',
+        memo: 'Memo'
       }
     }
   },

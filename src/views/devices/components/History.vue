@@ -26,7 +26,7 @@
         </ul>
       </div>
       <el-dialog :title="''" :visible.sync="isMemoTimelineVisible" width="80%" :destroy-on-close="true">
-        <memo-timeline :maintenance-id="maintenanceId" @cancelClicked="isMemoTimelineVisible = false" />
+        <memo-timeline :maintenance-id="maintenanceId" />
       </el-dialog>
     </div>
   </div>
