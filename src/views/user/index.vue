@@ -81,11 +81,7 @@ export default {
       loading: false
     }
   },
-  watch: {
-    userId(newVal, oldVal) {
-      this.selectedUserId = newVal
-    }
-  },
+
   async created() {
     this.listQuery = {
       page: +(this.$route.query.page || this.listQuery.page),
@@ -111,7 +107,6 @@ export default {
       this.loading = true
       if (this.selectedUserId && this.selectedUserId > 0) {
         response = await fetchUserById(selectedUserId, this.listQuery)
-        console.log()
       } else {
         response = await fetchUsers(this.listQuery)
       }
@@ -119,6 +114,7 @@ export default {
         data,
         total
       } = response
+      console.log(data)
       this.users = data.map(this.mapUsersToDataTable)
       this.total = total
       this.loading = false

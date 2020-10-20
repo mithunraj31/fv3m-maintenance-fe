@@ -13,6 +13,7 @@
             <el-select v-model="form.role" :rules="formRules" filterable :placeholder="this.$t('user.form.userRole')">
               <el-option label="admin" value="admin" />
               <el-option label="user" value="user" />
+              <el-option label="read-only" value="read-only" />
             </el-select>
           </el-form-item>
           <el-form-item v-if="!visible">
@@ -151,7 +152,7 @@ export default {
   methods: {
     onSubmit() {
       this.$refs.form.validate((valid) => {
-        console.log(this.form.name, valid)
+        console.log(this.form, valid)
         if (valid) {
           this.$emit('onFormSubmit', {
             ...this.form
