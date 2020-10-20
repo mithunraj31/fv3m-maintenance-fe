@@ -61,12 +61,12 @@
           </el-form-item>
           <el-form-item :label="this.$t('device.form.operatingSystem')">
             <el-radio-group v-model="form.os">
-              <el-radio :label="this.$t('device.form.android')" />
-              <el-radio :label="this.$t('device.form.embedded')" />
+              <el-radio :label="1">{{ this.$t('device.form.android') }}</el-radio>
+              <el-radio :label="2">{{ this.$t('device.form.embedded') }}</el-radio>
             </el-radio-group>
           </el-form-item>
           <el-form-item :label="this.$t('general.description')">
-            <el-input v-model="form.desc" type="textarea" />
+            <el-input v-model="form.description" type="textarea" />
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="onSubmit">{{ this.$t('general.save') }}</el-button>
@@ -95,9 +95,10 @@ export default {
           serialNumber: '',
           registerDate: '',
           mutated: false,
-          os: '',
+          os: 0,
           description: '',
-          customerId: 0
+          customerId: 0,
+          mutatedDate: ''
         }
       }
     }
@@ -126,9 +127,10 @@ export default {
         serialNumber: '',
         registerDate: '',
         mutated: false,
-        os: '',
+        os: 0,
         description: '',
-        customerId: 0
+        customerId: 0,
+        mutatedDate: ''
       },
       dialogVisible: false,
       formRules: {
@@ -154,16 +156,24 @@ export default {
   },
   watch: {
     device: function(newDevice, oldDevice) {
+      console.log(newDevice)
       this.form.id = newDevice.id
       this.form.name = newDevice.name
       this.form.status = newDevice.status
       this.form.customerId = newDevice.customerId
       this.fileList = newDevice.fileList
+      this.form.mutatedDate = newDevice.mutatedDate
+      this.form.serialNumber = newDevice.serialNumber
+      this.form.registerDate = newDevice.registerDate
+      this.form.os = newDevice.os
+      this.form.description = newDevice.description
+      this.form.mutated = newDevice.mutated
     }
   },
   methods: {
     onSubmit() {
       this.$refs.form.validate((valid) => {
+        console.log(this.form)
         if (valid) {
           this.$emit('onFormSubmit', {
             ...this.form,

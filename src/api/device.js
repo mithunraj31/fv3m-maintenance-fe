@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import * as moment from 'moment'
 
 export function fetchDevices(query) {
   return request({
@@ -26,7 +27,13 @@ export function newDevice(device) {
     name: device.name,
     customer_id: device.customerId,
     status_id: device.status,
-    imageUrls: device.imageUrls.map(x => x.url)
+    imageUrls: device.imageUrls.map(x => x.url),
+    serial_number: device.serialNumber,
+    regist_date: moment(device.registerDate).format('YYYY-MM-DD'),
+    mutated: device.mutated,
+    mutated_date: moment(device.mutatedDate).format('YYYY-MM-DD'),
+    os: device.os,
+    description: device.description
   }
 
   return request({
@@ -42,7 +49,13 @@ export function editDevice(device) {
     name: device.name,
     customer_id: device.customerId,
     status_id: device.status,
-    imageUrls: device.imageUrls.map(x => x.url)
+    imageUrls: device.imageUrls.map(x => x.url),
+    serial_number: device.serialNumber,
+    regist_date: moment(device.registerDate).format('YYYY-MM-DD'),
+    mutated: device.mutated,
+    mutated_date: moment(device.mutatedDate).format('YYYY-MM-DD'),
+    os: device.os,
+    description: device.description
   }
 
   return request({

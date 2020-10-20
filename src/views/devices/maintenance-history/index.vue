@@ -26,7 +26,7 @@
           :total="total"
           :page.sync="listQuery.page"
           :limit.sync="listQuery.limit"
-          :page-sizes="[2, 5, 10, 15, 20]"
+          :page-sizes="[5, 10, 15, 20]"
           @pagination="getMaintenanceData"
         />
       </el-col>
@@ -70,7 +70,15 @@ export default {
         name: data.name,
         status: data.status_id,
         customerId: data.customer_id,
-        images: data.images
+        images: data.images,
+        statusId: data.status_id,
+        serialNumber: data.serial_number,
+        registerDate: data.regist_date,
+        mutated: data.mutated === 1,
+        mutatedDate: data.mutated_date,
+        os: data.os,
+        description: data.description,
+        statusName: data.status && data.status.name ? data.status.name : ''
       }
       this.deviceLoading = false
     },

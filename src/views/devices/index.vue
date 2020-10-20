@@ -124,9 +124,9 @@ export default {
       } else {
         response = await fetchDevices(this.listQuery)
       }
-      const { data, total } = response
+      const { data, meta } = response
       this.devices = data.map(this.mapDevicesToDataTable)
-      this.total = total
+      this.total = meta.total
       this.loading = false
       this.$router.push({
         query: this.listQuery
