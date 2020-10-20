@@ -69,7 +69,7 @@ export default {
     editUser: 'Edit user id: {0}',
     newDevice: 'New device',
     editUserBreadcrumbTitle: 'Edit user',
-    maintenanceHistoryBreadcrumbTitle: 'maintenanceHistoryBreadcrumbTitle',
+    maintenanceHistoryBreadcrumbTitle: 'Maintenance history',
     editDeviceBreadcrumbTitle: 'Edit device',
     editDevice: 'Edit device id: {0}',
     maintenanceHistory: 'Maintenance History Device ID: {0}'
@@ -326,7 +326,10 @@ export default {
     createdAt: 'Created at',
     updatedAt: 'Updated at',
     newest: 'Newest',
-    oldest: 'Oldest'
+    oldest: 'Oldest',
+    admin: 'Admin',
+    user: 'user',
+    readOnly: 'Read only'
   },
   notfound: {
     oops: 'Opps',

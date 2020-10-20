@@ -65,7 +65,7 @@ export default {
     profile: 'プロフィール',
     deviceListings: 'デバイス',
     userListings: 'ユーザー',
-    newUser: 'ユーザーを追加する',
+    newUser: 'ユーザーを追加',
     editUser: 'ユーザーID:{0}を編集',
     editUserBreadcrumbTitle: 'ユーザーを編集',
     newDevice: 'デバイスを追加',
@@ -199,7 +199,7 @@ export default {
     emailRequired: 'メールが必要です',
     roleRequired: '役割が必要です',
     passwordRequired: 'パスワードが必要です',
-    confirmPasswordRequired: 'パスワードが必要であることを確認する',
+    confirmPasswordRequired: 'パスワードが必要であることを確認',
     passwordMismatch: 'パスワードの確認はパスワードと同じである必要があります',
     deviceNameRequired: 'デバイス名は必要があります',
     serialNumberRequired: '通し番号は必要があります',
@@ -246,7 +246,7 @@ export default {
       selectUser: 'ユーザーを選択'
     },
     new: {
-      title: 'ユーザーを追加する'
+      title: 'ユーザーを追加'
     },
     edit: {
       title: 'ユーザーの編集'
@@ -256,8 +256,8 @@ export default {
       userEmail: 'Eメール',
       userRole: '役割',
       userPassword: 'パスワード',
-      userConfirmPassword: 'パスワードを認証する',
-      changePassword: 'パスワードを変更する'
+      userConfirmPassword: 'パスワードを認証',
+      changePassword: 'パスワードを変更'
     }
   },
 
@@ -331,7 +331,10 @@ export default {
     createdAt: '作成日',
     updatedAt: '編集日',
     newest: '最新',
-    oldest: '最古'
+    oldest: '最古',
+    admin: '管理者',
+    user: '一般のユーザー',
+    readOnly: '読み取り専用のユーザー'
   },
   notfound: {
     oops: 'おっと',
