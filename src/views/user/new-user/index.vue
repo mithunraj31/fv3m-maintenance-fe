@@ -7,9 +7,7 @@
 
 <script>
 import UserForm from '../components/UserForm'
-import {
-  newUser
-} from '@/api/user'
+import { newUser } from '@/api/user'
 
 export default {
   name: 'NewUser',
@@ -23,7 +21,7 @@ export default {
         .then((response) => {
           this.loading = false
           this.$message({
-            message: this.$t('message.deviceHasBeenCreated'),
+            message: this.$t('message.userHasBeenCreated'),
             type: 'success'
           })
           this.$router.push('/users')

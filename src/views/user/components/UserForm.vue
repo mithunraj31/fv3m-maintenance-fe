@@ -15,12 +15,16 @@
               <el-option label="user" value="user" />
             </el-select>
           </el-form-item>
-
-          <el-form-item :label="this.$t('user.form.userPassword')" prop="password">
-            <el-input v-model="form.password" />
+          <el-form-item v-if="!visible">
+            <el-button type="primary" @click="this.onChangePassword">{{
+              this.$t("user.form.changePassword")
+            }}</el-button>
           </el-form-item>
-          <el-form-item :label="this.$t('user.form.userConfirmPassword')" prop="confirmPassword">
-            <el-input v-model="form.confirmPassword" />
+          <el-form-item v-if="visible" :label="this.$t('user.form.userPassword')" prop="password">
+            <el-input v-model="form.password" type="password" />
+          </el-form-item>
+          <el-form-item v-if="visible" :label="this.$t('user.form.userConfirmPassword')" prop="confirmPassword">
+            <el-input v-model="form.confirmPassword" type="password" />
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="this.onSubmit">{{
@@ -77,16 +81,18 @@ export default {
       }
     }
     const validatePassword = (rule, value, callback) => {
-      if (!value) {
+      if (!value && this.visible) {
         callback(new Error(this.$t('message.passwordRequired')))
+      } else if (value.length < 6 && this.visible) {
+        callback(new Error(this.$t('message.invalidLength')))
       } else {
         callback()
       }
     }
     const validateconfirmPassword = (rule, value, callback) => {
-      if (!value) {
+      if (!value && this.visible) {
         callback(new Error(this.$t('message.confirmPasswordRequired')))
-      } else if (value !== this.form.password) {
+      } else if (value !== this.form.password && this.visible) {
         callback(new Error(this.$t('message.passwordMismatch')))
       } else {
         callback()
@@ -94,6 +100,7 @@ export default {
     }
 
     return {
+      visible: true,
       form: {
         id: 0,
         name: '',
@@ -138,8 +145,7 @@ export default {
       this.form.name = newUser.name
       this.form.email = newUser.email
       this.form.role = newUser.role
-      this.form.password = newUser.password
-      this.form.confirmPassword = newUser.password
+      this.visible = false
     }
   },
   methods: {
@@ -152,6 +158,9 @@ export default {
           })
         }
       })
+    },
+    onChangePassword() {
+      this.visible = true
     }
   }
 }

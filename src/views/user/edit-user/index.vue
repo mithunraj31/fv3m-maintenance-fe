@@ -43,7 +43,7 @@ export default {
         .then(() => {
           this.loading = false
           this.$message({
-            message: this.$t('message.deviceHasBeenCreated'),
+            message: this.$t('message.userHasBeenUpdated'),
             type: 'success'
           })
           this.$router.push('/users')
