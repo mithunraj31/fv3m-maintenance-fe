@@ -28,7 +28,14 @@ export default {
       customerId: data.customer_id,
       fileList: data.images && data.images.length > 0 ? data.images.map(x => {
         return { name: x.url, url: x.url }
-      }) : []
+      }) : [],
+      statusId: data.status_id,
+      serialNumber: data.serial_number,
+      registerDate: data.regist_date,
+      mutatedDate: data.mutated_date,
+      os: data.os,
+      description: data.description
+
     }
     this.loading = false
   },
@@ -39,7 +46,7 @@ export default {
         .then(() => {
           this.loading = false
           this.$message({
-            message: this.$t('message.deviceHasBeenCreated'),
+            message: this.$t('message.deviceHasBeenEdited'),
             type: 'success'
           })
           this.$router.push('/devices')

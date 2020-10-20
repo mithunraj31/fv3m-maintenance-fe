@@ -207,7 +207,7 @@ export default {
     somethingWentWrong: '何かがうまくいきませんでした',
     confirmDelete: '「{0}」を削除してもよろしいでしょうか',
     deviceHasBeenDeleted: 'デバイスが削除されました',
-    deviceHasBeenEdited: 'バイスが編集されました',
+    deviceHasBeenEdited: 'デバイスが編集されました',
     memoHasBeenCreated: 'メモが作成されました',
     memoHasBeenUpdated: 'メモが編集されました',
     memoHasBeenDeleted: 'メモが削除されました',
@@ -281,7 +281,6 @@ export default {
       deviceName: 'デバイス名',
       serialNumber: '通し番号',
       registerDate: '登録日',
-      isMutated: '変異',
       mutatedDate: '変更された日付',
       deviceStatus: 'デバイス状態',
       status: {

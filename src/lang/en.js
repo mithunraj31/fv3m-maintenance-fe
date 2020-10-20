@@ -276,7 +276,6 @@ export default {
       deviceName: 'Device Name',
       serialNumber: 'Serial Nubmer',
       registerDate: 'Regist date',
-      isMutated: 'Mutate',
       mutatedDate: 'Mutated Date',
       deviceStatus: 'Device status',
       status: {
@@ -293,7 +292,7 @@ export default {
       card: {
         title: 'Device infomation',
         basicInfo: 'Basic infomation',
-        notfound: 'History notfound',
+        notfound: 'History not found',
         noImage: 'No image'
       },
       history: {
@@ -301,7 +300,7 @@ export default {
       },
       memo: {
         textarea: 'write your memo',
-        notfound: 'Momo notfound',
+        notfound: 'Momo not found',
         newMomo: 'New memo',
         editMemo: 'Edit memo',
         memo: 'Memo'

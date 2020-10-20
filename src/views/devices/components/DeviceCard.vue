@@ -43,32 +43,23 @@
             </el-col>
             <el-col :span="18">{{ device.registerDate }}</el-col>
           </el-row>
-          <el-row class="basic-info-row">
-            <el-col :span="6">
-              <strong>{{ this.$t('device.form.isMutated') }}</strong>
-            </el-col>
-            <el-col :span="18">
-              <i v-if="device.mutated" class="el-icon-success" />
-              <i v-if="!device.mutated" class="el-icon-error" />
-            </el-col>
-          </el-row>
           <el-row v-if="device.mutated" class="basic-info-row">
             <el-col :span="6">
               <strong>{{ this.$t('device.form.mutatedDate') }}</strong>
             </el-col>
-            <el-col :span="18" />
+            <el-col :span="18">{{ device.mutatedDate }}</el-col>
           </el-row>
           <el-row class="basic-info-row">
             <el-col :span="6">
-              <strong>{{ this.$t('device.form.mutatedDate') }}</strong>
+              <strong>{{ this.$t('device.form.deviceStatus') }}</strong>
             </el-col>
-            <el-col :span="18" />
+            <el-col :span="18">{{ deviceStatus }}</el-col>
           </el-row>
           <el-row class="basic-info-row">
             <el-col :span="6">
               <strong>{{ this.$t('device.form.operatingSystem') }}</strong>
             </el-col>
-            <el-col :span="18" />
+            <el-col :span="18">{{ deviceOs }}</el-col>
           </el-row>
           <div class="text-muted">{{ device.description }}</div>
         </div>
@@ -86,19 +77,35 @@ export default {
       default: () => {
         return {
           name: '',
-          status: [],
+          status: 0,
           serialNumber: '',
           registerDate: '',
-          mutated: false,
           os: '',
           description: '',
-          images: []
+          images: [],
+          statusName: ''
         }
       }
     }
   },
   computed: {
+    deviceStatus() {
+      if (!this.device.statusName || this.device.status.length === 0) {
+        return ''
+      }
+      return this.$t(`device.form.status.` + this.device.statusName.toLowerCase())
+    },
+    deviceOs() {
+      if (!this.device.os || this.device.os === 0) {
+        return ''
+      }
 
+      if (this.device.os === 1) {
+        return this.$t('device.form.android')
+      } else {
+        return this.$t('device.form.embedded')
+      }
+    }
   },
   watch: {
     device: function(newDevice, oldDevice) {
@@ -115,6 +122,7 @@ export default {
 }
 
 .text-muted {
+  margin-top: 10px;
   color: #777;
 }
 
