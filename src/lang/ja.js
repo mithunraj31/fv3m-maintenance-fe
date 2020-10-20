@@ -217,7 +217,6 @@ export default {
       deviceName: 'デバイス名',
       serialNumber: '通し番号',
       registerDate: '登録日',
-      isMutated: '変異',
       mutatedDate: '変更された日付',
       deviceStatus: 'デバイス状態',
       status: {

@@ -43,15 +43,6 @@
             </el-col>
             <el-col :span="18">{{ device.registerDate }}</el-col>
           </el-row>
-          <el-row class="basic-info-row">
-            <el-col :span="6">
-              <strong>{{ this.$t('device.form.isMutated') }}</strong>
-            </el-col>
-            <el-col :span="18">
-              <i v-if="device.mutated" class="el-icon-success" />
-              <i v-if="!device.mutated" class="el-icon-error" />
-            </el-col>
-          </el-row>
           <el-row v-if="device.mutated" class="basic-info-row">
             <el-col :span="6">
               <strong>{{ this.$t('device.form.mutatedDate') }}</strong>
@@ -89,7 +80,6 @@ export default {
           status: 0,
           serialNumber: '',
           registerDate: '',
-          mutated: false,
           os: '',
           description: '',
           images: [],

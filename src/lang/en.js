@@ -215,7 +215,6 @@ export default {
       deviceName: 'Device Name',
       serialNumber: 'Serial Nubmer',
       registerDate: 'Regist date',
-      isMutated: 'Mutate',
       mutatedDate: 'Mutated Date',
       deviceStatus: 'Device status',
       status: {

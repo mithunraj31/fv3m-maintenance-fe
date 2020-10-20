@@ -74,7 +74,6 @@ export default {
         statusId: data.status_id,
         serialNumber: data.serial_number,
         registerDate: data.regist_date,
-        mutated: data.mutated === 1,
         mutatedDate: data.mutated_date,
         os: data.os,
         description: data.description,

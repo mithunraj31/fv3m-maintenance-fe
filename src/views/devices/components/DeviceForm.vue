@@ -39,9 +39,6 @@
             />
 
           </el-form-item>
-          <el-form-item :label="this.$t('device.form.isMutated')">
-            <el-switch v-model="form.mutated" />
-          </el-form-item>
           <el-form-item :label="this.$t('device.form.mutatedDate')">
             <el-date-picker
               v-model="form.mutatedDate"
@@ -94,7 +91,6 @@ export default {
           status: 0,
           serialNumber: '',
           registerDate: '',
-          mutated: false,
           os: 0,
           description: '',
           customerId: 0,
@@ -126,7 +122,6 @@ export default {
         status: 0,
         serialNumber: '',
         registerDate: '',
-        mutated: false,
         os: 0,
         description: '',
         customerId: 0,
@@ -156,7 +151,6 @@ export default {
   },
   watch: {
     device: function(newDevice, oldDevice) {
-      console.log(newDevice)
       this.form.id = newDevice.id
       this.form.name = newDevice.name
       this.form.status = newDevice.status
@@ -167,13 +161,11 @@ export default {
       this.form.registerDate = newDevice.registerDate
       this.form.os = newDevice.os
       this.form.description = newDevice.description
-      this.form.mutated = newDevice.mutated
     }
   },
   methods: {
     onSubmit() {
       this.$refs.form.validate((valid) => {
-        console.log(this.form)
         if (valid) {
           this.$emit('onFormSubmit', {
             ...this.form,
