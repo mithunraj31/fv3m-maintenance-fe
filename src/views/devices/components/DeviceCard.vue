@@ -5,8 +5,16 @@
     </div>
 
     <div class="user-profile">
-      <div class="box-center">
-        <pan-thumb :image="''" :height="'100px'" :width="'100px'" :hoverable="false" />
+      <el-carousel v-if="device.images && device.images.length > 0" indicator-position="outside">
+        <el-carousel-item
+          v-for="img in device.images"
+          :key="img.id"
+          class="device-image"
+          :style="{ 'background-image': `url(${img.url})` }"
+        />
+      </el-carousel>
+      <div v-if="!device.images || device.images.length == 0" class="no-image">
+        <h2>{{ $t('device.maintenance.card.noImage') }}</h2>
       </div>
     </div>
 
@@ -14,7 +22,7 @@
       <div class="user-education user-bio-section">
         <div class="user-bio-section-header">
           <svg-icon icon-class="documentation" />
-          <span>{{ this.$t('device.maintenance.card.basic.Info') }}</span>
+          <span>{{ this.$t('device.maintenance.card.basicInfo') }}</span>
         </div>
         <div class="user-bio-section-body">
           <el-row class="basic-info-row">
@@ -70,11 +78,8 @@
 </template>
 
 <script>
-import PanThumb from '@/components/PanThumb'
-
 export default {
   name: 'DeviceCard',
-  components: { PanThumb },
   props: {
     device: {
       type: Object,
@@ -86,13 +91,19 @@ export default {
           registerDate: '',
           mutated: false,
           os: '',
-          description: ''
+          description: '',
+          images: []
         }
       }
     }
   },
   computed: {
 
+  },
+  watch: {
+    device: function(newDevice, oldDevice) {
+      this.device = newDevice
+    }
   }
 }
 </script>
@@ -158,5 +169,19 @@ export default {
 
 .basic-info-row {
   margin-top: 10px;
+}
+
+.device-image {
+  background-size: cover;
+  background-repeat:  no-repeat;
+  background-position: center center;
+}
+
+.no-image {
+  background: #d3dce6;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

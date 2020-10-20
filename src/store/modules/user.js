@@ -1,6 +1,7 @@
 import { login } from '@/api/user'
 import { getToken, setToken, removeToken, setUserInfo, getUserInfo, removeUserInfo } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
+import { getUserAvatar } from '@/utils/user'
 
 const state = {
   token: getToken(),
@@ -43,7 +44,7 @@ const actions = {
         commit('SET_ROLES', [data.user.role])
         commit('SET_NAME', data.user.name)
         commit('SET_USER_ID', data.user.id)
-        commit('SET_AVATAR', `https://ui-avatars.com/api/?name=${data.user.name}`)
+        commit('SET_AVATAR', getUserAvatar(data.user.name))
         commit('SET_INTRODUCTION', data.user.email)
 
         setToken(data.access_token)
