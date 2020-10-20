@@ -23,9 +23,9 @@ export function logout() {
   })
 }
 
-export function fetchUsers() {
+export function fetchUsers(query) {
   return request({
-    url: '/users?perPage=${query.limit}&page=${query.page}',
+    url: `/users?perPage=${query.limit}&page=${query.page}`,
     method: 'get'
   })
 }

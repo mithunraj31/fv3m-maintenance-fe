@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div v-loading="loading" class="app-container">
     <h3>{{ this.$t("user.new.title") }}</h3>
     <user-form @onFormSubmit="onFormSubmit" />
   </div>
@@ -7,12 +7,19 @@
 
 <script>
 import UserForm from '../components/UserForm'
-import { newUser } from '@/api/user'
+import {
+  newUser
+} from '@/api/user'
 
 export default {
   name: 'NewUser',
   components: {
     UserForm
+  },
+  data() {
+    return {
+      loading: false
+    }
   },
   methods: {
     onFormSubmit(form) {

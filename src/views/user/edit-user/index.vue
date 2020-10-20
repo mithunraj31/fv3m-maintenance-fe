@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div v-loading="loading" class="app-container">
     <h3>{{ this.$t("user.edit.title") }}: {{ $route.params.id }}</h3>
     <user-form :user="user" @onFormSubmit="onFormSubmit" />
   </div>
@@ -7,10 +7,7 @@
 
 <script>
 import UserForm from '../components/UserForm'
-import {
-  fetchUserById,
-  editUser
-} from '@/api/user'
+import { fetchUserById, editUser } from '@/api/user'
 
 export default {
   name: 'EditUser',
@@ -25,9 +22,7 @@ export default {
   },
   async mounted() {
     this.loading = true
-    const {
-      data
-    } = await fetchUserById(+this.$route.params.id)
+    const { data } = await fetchUserById(+this.$route.params.id)
     this.user = {
       id: +this.$route.params.id,
       name: data.name,
@@ -43,7 +38,7 @@ export default {
         .then(() => {
           this.loading = false
           this.$message({
-            message: this.$t('message.userHasBeenUpdated'),
+            message: this.$t('message.userHasBeenEdited'),
             type: 'success'
           })
           this.$router.push('/users')

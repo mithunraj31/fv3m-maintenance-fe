@@ -66,8 +66,9 @@ export default {
     deviceListings: 'Device listings',
     userListings: 'User listings',
     newUser: 'New user',
-    editUser: 'Edit user',
+    editUser: 'Edit user id: {0}',
     newDevice: 'New device',
+    editUserBreadcrumbTitle: 'Edit user',
     maintenanceHistoryBreadcrumbTitle: 'maintenanceHistoryBreadcrumbTitle',
     editDeviceBreadcrumbTitle: 'Edit device',
     editDevice: 'Edit device id: {0}',
@@ -214,7 +215,10 @@ export default {
     deviceHasBeenEdited: 'Device has been edited',
     MemoHasBeenCreated: 'Memo has been created',
     memoHasBeenUpdated: 'Memo has been updated',
-    memoHasBeenDeleted: 'Memo has been deleted'
+    memoHasBeenDeleted: 'Memo has been deleted',
+    userHasBeenCreated: 'User has been created',
+    userHasBeenDeleted: 'User has been deleted',
+    userHasBeenEdited: 'User has been edited'
   },
   error: {
     accountIncorrect: 'Username or password incorrect'
@@ -248,7 +252,8 @@ export default {
       userEmail: 'Email',
       userRole: 'Role',
       userPassword: 'Password',
-      userConfirmPassword: 'Confirm Password'
+      userConfirmPassword: 'Confirm Password',
+      changePassword: 'Change Password'
     }
   },
 

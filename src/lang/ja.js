@@ -66,6 +66,8 @@ export default {
     deviceListings: 'デバイス',
     userListings: 'ユーザー',
     newUser: 'ユーザーを追加する',
+    editUser: 'ユーザーID:{0}を編集',
+    editUserBreadcrumbTitle: 'ユーザーを編集',
     newDevice: 'デバイスを追加',
     editDevice: 'デバイスID:{0}を編集',
     editDeviceBreadcrumbTitle: 'デバイスを編集',
@@ -208,7 +210,10 @@ export default {
     deviceHasBeenEdited: 'バイスが編集されました',
     memoHasBeenCreated: 'メモが作成されました',
     memoHasBeenUpdated: 'メモが編集されました',
-    memoHasBeenDeleted: 'メモが削除されました'
+    memoHasBeenDeleted: 'メモが削除されました',
+    userHasBeenCreated: 'ユーザーが作成されました',
+    userHasBeenDeleted: 'ユーザーが削除されました',
+    userHasBeenEdited: 'ユーザーが編集されました'
   },
   error: {
     accountIncorrect: 'ユーザー名又はパスワードが間違っています'
@@ -251,7 +256,8 @@ export default {
       userEmail: 'Eメール',
       userRole: '役割',
       userPassword: 'パスワード',
-      userConfirmPassword: 'パスワードを認証する'
+      userConfirmPassword: 'パスワードを認証する',
+      changePassword: 'パスワードを変更する'
     }
   },
 

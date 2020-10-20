@@ -1,20 +1,15 @@
 <template>
   <div class="app-container">
     <el-row class="filter-section">
-      <el-col :span="20">
-        <el-select v-model="selectedUserId" filterable :placeholder="this.$t('user.listings.selectUser')" @change="fetchListings">
-          <el-option v-for="user in users" :key="user.name" :label="user.name" :value="user.id" />
-        </el-select>
-      </el-col>
-      <el-col :span="4" class="new-user-button-section">
-        <el-button type="primary" @click="$router.push('/user/new')">{{
+      <el-col :span="24" class="new-user-button-section">
+        <el-button type="primary" @click="$router.push('/users/new')">{{
           this.$t("user.new.title")
         }}</el-button>
       </el-col>
     </el-row>
     <el-row>
       <el-col :span="24">
-        <el-table :data="users" border style="width: 100%">
+        <el-table v-loading="loading" :data="users" border style="width: 100%">
           <el-table-column prop="id" :label="this.$t('user.listings.userId')" width="50" />
           <el-table-column prop="name" :label="this.$t('user.listings.userName')" />
           <el-table-column prop="email" :label="this.$t('user.listings.userEmail')" />
@@ -26,7 +21,7 @@
                 type="primary"
                 size="small"
                 @click.native.prevent="
-                  $router.push(`/user/${scope.row.id}/edit`)
+                  $router.push(`/users/${scope.row.id}/edit`)
                 "
               >
                 {{ $t("general.edit") }}
@@ -37,7 +32,7 @@
             </template>
           </el-table-column>
         </el-table>
-        <pagination :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" />
+        <pagination :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="onPaged" />
       </el-col>
     </el-row>
   </div>
@@ -46,7 +41,6 @@
 <script>
 import {
   fetchUsers,
-  fetchUserById,
   deleteUser
 } from '@/api/user'
 import Pagination from '@/components/Pagination'
@@ -72,7 +66,6 @@ export default {
   data() {
     return {
       users: null,
-      selectedUserId: null,
       total: 0,
       listQuery: {
         page: 1,
@@ -102,21 +95,16 @@ export default {
         updated: moment(String(user.updated_at)).format('YYYY/MM/DD hh:mm')
       }
     },
-    async fetchListings(selectedUserId) {
+    async fetchListings() {
       let response = null
       this.loading = true
-      if (this.selectedUserId && this.selectedUserId > 0) {
-        response = await fetchUserById(selectedUserId, this.listQuery)
-      } else {
-        response = await fetchUsers(this.listQuery)
-      }
+      response = await fetchUsers(this.listQuery)
       const {
         data,
-        total
+        meta
       } = response
-      console.log(data)
       this.users = data.map(this.mapUsersToDataTable)
-      this.total = total
+      this.total = meta.total
       this.loading = false
       this.$router.push({
         query: this.listQuery

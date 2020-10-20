@@ -118,7 +118,7 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/user',
+    path: '/users',
     component: Layout,
     redirect: '/user/index',
     children: [
@@ -144,7 +144,7 @@ export const constantRoutes = [
         component: () => import('@/views/user/edit-user/index'),
         name: 'EditUser',
         hidden: true,
-        meta: { title: 'editUser', icon: 'el-icon-mobile', noCache: true }
+        meta: { title: 'editUser', icon: 'el-icon-mobile', noCache: true, breadcrumbTitle: 'editUserBreadcrumbTitle' }
       }
     ]
   },
