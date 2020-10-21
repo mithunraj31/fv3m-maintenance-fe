@@ -7,7 +7,10 @@
 
 <script>
 import UserForm from '../components/UserForm'
-import { fetchUserById, editUser } from '@/api/user'
+import {
+  fetchUserById,
+  editUser
+} from '@/api/user'
 
 export default {
   name: 'EditUser',
@@ -22,7 +25,9 @@ export default {
   },
   async mounted() {
     this.loading = true
-    const { data } = await fetchUserById(+this.$route.params.id)
+    const {
+      data
+    } = await fetchUserById(+this.$route.params.id)
     this.user = {
       id: +this.$route.params.id,
       name: data.name,

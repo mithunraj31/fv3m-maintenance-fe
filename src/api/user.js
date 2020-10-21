@@ -74,3 +74,10 @@ export function deleteUser(id) {
   })
 }
 
+export function isEmailAlreadyRegistered(email) {
+  return request({
+    url: `/users/verify/email?val=${email}`,
+    method: 'get'
+  })
+}
+

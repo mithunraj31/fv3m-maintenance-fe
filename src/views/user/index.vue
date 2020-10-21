@@ -13,7 +13,11 @@
           <el-table-column prop="id" :label="this.$t('user.listings.userId')" width="50" />
           <el-table-column prop="name" :label="this.$t('user.listings.userName')" />
           <el-table-column prop="email" :label="this.$t('user.listings.userEmail')" />
-          <el-table-column prop="role" :label="this.$t('user.listings.userRole')" />
+          <el-table-column prop="role" :label="this.$t('user.listings.userRole')">
+            <template slot-scope="scope">
+              {{ roleName(scope.row.role) }}
+            </template>
+          </el-table-column>
           <el-table-column prop="updated" :label="this.$t('user.listings.userUpdated')" />
           <el-table-column :label="this.$t('general.action')">
             <template slot-scope="scope">
@@ -26,7 +30,7 @@
               >
                 {{ $t("general.edit") }}
               </el-button>
-              <el-button type="danger" size="small" @click="onDeleteUserClicked(scope.row.id)">
+              <el-button :disabled="scope.row.role === 'admin'" type="danger" size="small" @click="onDeleteUserClicked(scope.row.id)">
                 {{ $t("general.delete") }}
               </el-button>
             </template>
@@ -63,6 +67,7 @@ export default {
       }
     }
   },
+
   data() {
     return {
       users: null,
@@ -74,6 +79,19 @@ export default {
       loading: false
     }
   },
+  computed: {
+    roleName() {
+      return (role) => {
+        if (role === 'admin') {
+          return this.$t('general.admin')
+        } else if (role === 'user') {
+          return this.$t('general.user')
+        } else {
+          return this.$t('general.readOnly')
+        }
+      }
+    }
+  },
 
   async created() {
     this.listQuery = {
@@ -83,7 +101,7 @@ export default {
     this.$router.push({
       query: this.listQuery
     })
-    await this.fetchListings(0)
+    await this.fetchListings()
   },
   methods: {
     mapUsersToDataTable(user) {
@@ -132,7 +150,7 @@ export default {
             message: this.$t('message.userHasBeenDeleted'),
             type: 'success'
           })
-          this.fetchListings(0)
+          this.fetchListings()
         })
         .catch(() => {
           this.$message({
@@ -142,7 +160,7 @@ export default {
         })
     },
     async onPaged() {
-      await this.fetchListings(0)
+      await this.fetchListings()
     }
   }
 }

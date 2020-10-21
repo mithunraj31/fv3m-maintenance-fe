@@ -118,37 +118,6 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/users',
-    component: Layout,
-    redirect: '/user/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/user/index'),
-        name: 'User',
-        meta: {
-          title: 'userListings',
-          icon: 'el-icon-user',
-          noCache: true
-        }
-      },
-      {
-        path: 'new',
-        component: () => import('@/views/user/new-user/index'),
-        name: 'NewUser',
-        hidden: true,
-        meta: { title: 'newUser', noCache: false }
-      },
-      {
-        path: ':id/edit',
-        component: () => import('@/views/user/edit-user/index'),
-        name: 'EditUser',
-        hidden: true,
-        meta: { title: 'editUser', icon: 'el-icon-mobile', noCache: true, breadcrumbTitle: 'editUserBreadcrumbTitle' }
-      }
-    ]
-  },
-  {
     path: '/profile',
     component: Layout,
     redirect: '/profile/index',
@@ -242,7 +211,39 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  { path: '*', redirect: '/404', hidden: true },
+  {
+    path: '/users',
+    component: Layout,
+    redirect: '/users/index',
+    meta: { roles: ['admin'] },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/user/index'),
+        name: 'User',
+        meta: {
+          title: 'userListings',
+          icon: 'el-icon-user',
+          noCache: true
+        }
+      },
+      {
+        path: 'new',
+        component: () => import('@/views/user/new-user/index'),
+        name: 'NewUser',
+        hidden: true,
+        meta: { title: 'newUser', noCache: false }
+      },
+      {
+        path: ':id/edit',
+        component: () => import('@/views/user/edit-user/index'),
+        name: 'EditUser',
+        hidden: true,
+        meta: { title: 'editUser', icon: 'el-icon-mobile', noCache: true, breadcrumbTitle: 'editUserBreadcrumbTitle' }
+      }
+    ]
+  }
 ]
 
 // export const originalAsyncRoutes = [

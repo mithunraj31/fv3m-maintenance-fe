@@ -7,7 +7,7 @@
             <el-input v-model="form.name" />
           </el-form-item>
           <el-form-item :label="this.$t('user.form.userEmail')" prop="email">
-            <el-input v-model="form.email" />
+            <el-input v-model="form.email" @input="onTypeEmail" />
           </el-form-item>
           <el-form-item :label="this.$t('user.form.userRole')" prop="role">
             <el-select v-model="form.role" :rules="formRules" filterable :placeholder="this.$t('user.form.userRole')">
@@ -17,7 +17,7 @@
             </el-select>
           </el-form-item>
           <el-form-item v-if="!visible">
-            <el-button type="primary" @click="this.onChangePassword">{{
+            <el-button type="primary" @click="visible = true">{{
               this.$t("user.form.changePassword")
             }}</el-button>
           </el-form-item>
@@ -42,6 +42,13 @@
 </template>
 
 <script>
+import {
+  validEmail
+} from '@/utils/validate'
+import {
+  isEmailAlreadyRegistered
+} from '@/api/user'
+
 export default {
   name: 'UserForm',
   props: {
@@ -70,6 +77,23 @@ export default {
     const validateEmail = (rule, value, callback) => {
       if (!value) {
         callback(new Error(this.$t('message.emailRequired')))
+      } else if (!validEmail(value)) {
+        callback(new Error(this.$t('message.emailNotValid')))
+      } else if (
+        this.previousEmail === '' ||
+                (this.previousEmail !== '' && this.previousEmail !== value)
+      ) {
+        isEmailAlreadyRegistered(value)
+          .then((response) => {
+            if (response.is_exists) {
+              callback(new Error(this.$t('message.emailAlreadyRegistered')))
+            } else {
+              callback()
+            }
+          })
+          .catch(() => {
+            callback(new Error(this.$t('message.emailAlreadyRegistered')))
+          })
       } else {
         callback()
       }
@@ -102,6 +126,7 @@ export default {
 
     return {
       visible: true,
+      previousEmail: '',
       form: {
         id: 0,
         name: '',
@@ -147,12 +172,12 @@ export default {
       this.form.email = newUser.email
       this.form.role = newUser.role
       this.visible = false
+      this.previousEmail = newUser.email
     }
   },
   methods: {
     onSubmit() {
       this.$refs.form.validate((valid) => {
-        console.log(this.form, valid)
         if (valid) {
           this.$emit('onFormSubmit', {
             ...this.form
@@ -160,8 +185,8 @@ export default {
         }
       })
     },
-    onChangePassword() {
-      this.visible = true
+    onTypeEmail() {
+      console.log(this.form.email)
     }
   }
 }

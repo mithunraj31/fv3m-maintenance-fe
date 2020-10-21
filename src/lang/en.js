@@ -205,7 +205,9 @@ export default {
     passwordRequired: 'Password is Required',
     confirmPasswordRequired: 'Confirm Password is Required',
     passwordMismatch: 'Confirm Password should be same as Password',
-
+    invalidLength: 'Password should be minimum 6 characters.',
+    emailNotValid: 'Enter a valid email',
+    emailAlreadyRegistered: 'Email Already Registered',
     deviceNameRequired: 'Device name is required',
     serialNumberRequired: 'Serial number is required',
     deviceHasBeenCreated: 'Device has been created',
