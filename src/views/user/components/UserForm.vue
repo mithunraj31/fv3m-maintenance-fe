@@ -7,7 +7,7 @@
             <el-input v-model="form.name" />
           </el-form-item>
           <el-form-item :label="this.$t('user.form.userEmail')" prop="email">
-            <el-input v-model="form.email" @input="onTypeEmail" />
+            <el-input v-model="form.email" />
           </el-form-item>
           <el-form-item :label="this.$t('user.form.userRole')" prop="role">
             <el-select v-model="form.role" :rules="formRules" filterable :placeholder="this.$t('user.form.userRole')">
@@ -184,9 +184,6 @@ export default {
           })
         }
       })
-    },
-    onTypeEmail() {
-      console.log(this.form.email)
     }
   }
 }
