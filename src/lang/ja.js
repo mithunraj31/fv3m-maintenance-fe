@@ -62,7 +62,17 @@ export default {
     clipboardDemo: 'Clipboard',
     i18n: '多言語',
     externalLink: '外部リンク',
-    profile: 'プロフィール'
+    profile: 'プロフィール',
+    deviceListings: 'デバイス',
+    userListings: 'ユーザー',
+    newUser: 'ユーザーを追加',
+    editUser: 'ユーザーID:{0}を編集',
+    editUserBreadcrumbTitle: 'ユーザーを編集',
+    newDevice: 'デバイスを追加',
+    editDevice: 'デバイスID:{0}を編集',
+    editDeviceBreadcrumbTitle: 'デバイスを編集',
+    maintenanceHistoryBreadcrumbTitle: 'メンテナンス履歴',
+    maintenanceHistory: 'デバイスID「{0}」のメンテナンス履歴'
   },
   navbar: {
     dashboard: 'トップ',
@@ -76,7 +86,13 @@ export default {
     title: 'ユーザログイン',
     logIn: 'ログイン',
     username: 'ユーザ名',
-    password: 'パスワード'
+    password: 'パスワード',
+    usernameCorrectlyRequired: 'ユーザー名を正しく入力してください。',
+    passwordCorrectlyRequired: 'パスワードを正しく入力してください。',
+    heroTitle: 'FORKERS V3のメンテナンスする管理システム',
+    heroDescription:
+      '５月１０日月曜日の午後３時に東京駅八重洲中央口で待ち合わせをしていただけませんか。 ブラウンさんをお願いします。 私は気が短いし、口も軽い男だ。 日本人ならそんなことはけっしてしないでしょう。 ６ヵ月靴を買っていない。新しいのを買ってよい頃だ。 １００万人の人々がその戦争で命を落とした。 インターネットのテクノロジーは日進月歩、いや、秒進分歩で進歩している。 イングランドはその試合に勝つだろう。 警察を呼んで！ 「どうかしたの？」と小さい白いウサギが聞きました。<br/><br/> 10分だけ付き合おう。 すぐに諦めて昼寝をするかも知れない。 あなたは大変速く走る。 あら、申し訳ございません。 彼らのコミュニケーションは我々が考えてきたものよりはるかに複雑かもしれません。 そちら様のお電話番号をいただけますか。 あら、申し訳ございません。 申し訳ないけど長居できないんですよ。 家に帰りましょうか。 社長さんの車種と色は？ <br/><br/> ログアウトするんじゃなかったよ。 いよいよという時に言葉が出ない。 ５月１０日月曜日の午後３時に東京駅八重洲中央口で待ち合わせをしていただけませんか。 私は気が短いし、口も軽い男だ。 いまだかつて偉大なもので熱烈な精神なくして成し遂げられたものは何もない。 ９０歳以上生きることは決してまれではない。 すぐに戻ります。 すぐに諦めて昼寝をするかも知れない。 「あの音で考え事ができないわ」と、彼女はタイプライターを見つめながら言った。 あなたは船で旅行をしますか、飛行機でしますか。',
+    keepSignin: 'サインインを維持'
   },
   documentation: {
     documentation: 'ドキュメント',
@@ -87,7 +103,8 @@ export default {
     editPermission: 'ロール変更',
     roles: 'ロール',
     switchRoles: 'ロール切替',
-    tips: 'v-permissionは使えない時があります。例えば: Element-UI の el-tab、 el-table-column 及び他の dom。v-ifを使う必要があります。',
+    tips:
+      'v-permissionは使えない時があります。例えば: Element-UI の el-tab、 el-table-column 及び他の dom。v-ifを使う必要があります。',
     delete: '削除',
     confirm: '確認',
     cancel: 'キャンセル'
@@ -98,12 +115,16 @@ export default {
   },
   components: {
     documentation: 'ドキュメント',
-    tinymceTips: 'tinymceは管理画面に重要な機能ですが、その同時に落とし穴がありあす。tinymceを使う道のりが大変でした。Tinymceを使う時に各自のプロジェクト状況で判断が必要です。ドキュメントはこちら',
-    dropzoneTips: 'Third partyのパッケージを使わず、独自の実装しています。詳細は @/components/Dropzone',
+    tinymceTips:
+      'tinymceは管理画面に重要な機能ですが、その同時に落とし穴がありあす。tinymceを使う道のりが大変でした。Tinymceを使う時に各自のプロジェクト状況で判断が必要です。ドキュメントはこちら',
+    dropzoneTips:
+      'Third partyのパッケージを使わず、独自の実装しています。詳細は @/components/Dropzone',
     stickyTips: 'ページの指定位置へスクロールした場合、表示されます。',
     backToTopTips1: 'トップへスクロールが表示されます。',
-    backToTopTips2: 'ボタンのスタイルはカスタマイズできます。例えば、show/hide、height、position。 またはElementのel-tooltipを使って、ツールチップを実装できます。',
-    imageUploadTips: 'mockjsは使えないため、カスタマイズしています。公式の最新バージョンを使ってください。'
+    backToTopTips2:
+      'ボタンのスタイルはカスタマイズできます。例えば、show/hide、height、position。 またはElementのel-tooltipを使って、ツールチップを実装できます。',
+    imageUploadTips:
+      'mockjsは使えないため、カスタマイズしています。公式の最新バージョンを使ってください。'
   },
   table: {
     dynamicTips1: '先頭は固定、最後に追加',
@@ -132,11 +153,13 @@ export default {
     confirm: '確認'
   },
   example: {
-    warning: '新規作成と編集画面は keep-alive を使えないです。keep-alive の include はrouteのキャッシュは使えないです。そのため、component name を使ってキャッシュさせるようにします。このようなキャッシュ機能を作りたい場合，localStorageを使う手があります。もしくは keep-alive の includeを使って、全ページキャッシュする方法はあります。'
+    warning:
+      '新規作成と編集画面は keep-alive を使えないです。keep-alive の include はrouteのキャッシュは使えないです。そのため、component name を使ってキャッシュさせるようにします。このようなキャッシュ機能を作りたい場合，localStorageを使う手があります。もしくは keep-alive の includeを使って、全ページキャッシュする方法はあります。'
   },
   errorLog: {
     tips: '右上のbugアイコンをクリックしてください。',
-    description: '管理画面はspaを使う場合が多い、ユーザ体現向上はできますが、想定外エラーが発生する場合があります。Vueはそのエラーハンドリング機能を提供し、エラーレポートができます。',
+    description:
+      '管理画面はspaを使う場合が多い、ユーザ体現向上はできますが、想定外エラーが発生する場合があります。Vueはそのエラーハンドリング機能を提供し、エラーレポートができます。',
     documentation: 'ドキュメント'
   },
   excel: {
@@ -154,7 +177,8 @@ export default {
   theme: {
     change: 'テーマ切替',
     documentation: 'ドキュメント',
-    tips: 'Tips: テーマの切り替え方法はnavbarのtheme-pickと異なります、使い方はドキュメントを確認してください。'
+    tips:
+      'Tips: テーマの切り替え方法はnavbarのtheme-pickと異なります、使い方はドキュメントを確認してください。'
   },
   tagsView: {
     refresh: '更新',
@@ -170,6 +194,158 @@ export default {
     sidebarLogo: 'Sidebar Logo'
   },
   message: {
-    languageChanged: '言語が変更されました'
+    languageChanged: '言語が変更されました',
+    userNameRequired: 'ユーザー名が必要です',
+    emailRequired: 'メールが必要です',
+    roleRequired: '役割が必要です',
+    passwordRequired: 'パスワードが必要です',
+    confirmPasswordRequired: 'パスワードが必要であることを確認',
+    passwordMismatch: 'パスワードの確認はパスワードと同じである必要があります',
+    invalidLength: 'パスワードは6文字以上である必要があります。',
+    emailNotValid: '有効なメールアドレスを入力してください',
+    emailAlreadyRegistered: 'すでに登録されたメール',
+    deviceNameRequired: 'デバイス名は必要があります',
+    serialNumberRequired: '通し番号は必要があります',
+    deviceHasBeenCreated: 'デバイスが作成されました',
+    somethingWentWrong: '何かがうまくいきませんでした',
+    confirmDelete: '「{0}」を削除してもよろしいでしょうか',
+    deviceHasBeenDeleted: 'デバイスが削除されました',
+    deviceHasBeenEdited: 'デバイスが編集されました',
+    memoHasBeenCreated: 'メモが作成されました',
+    memoHasBeenUpdated: 'メモが編集されました',
+    memoHasBeenDeleted: 'メモが削除されました',
+    userHasBeenCreated: 'ユーザーが作成されました',
+    userHasBeenDeleted: 'ユーザーが削除されました',
+    userHasBeenEdited: 'ユーザーが編集されました'
+  },
+  error: {
+    accountIncorrect: 'ユーザー名又はパスワードが間違っています'
+  },
+  deviceListings: {
+    deviceId: '番号',
+    serialNumber: '通し番号',
+    deviceName: '名',
+    owner: '主人',
+    lastUpdated: '最終更新時刻',
+    selectCompany: '会社を選択'
+  },
+
+  userListings: {
+    userId: '番号',
+    userName: '名',
+    userEmail: 'Eメール',
+    userRole: '役割',
+    userUpdated: '最終更新時刻',
+    selectUser: 'ユーザーを選択'
+  },
+
+  user: {
+    listings: {
+      userId: '番号',
+      userName: '名',
+      userEmail: 'Eメール',
+      userRole: '役割',
+      userUpdated: '最終更新時刻',
+      selectUser: 'ユーザーを選択'
+    },
+    new: {
+      title: 'ユーザーを追加'
+    },
+    edit: {
+      title: 'ユーザーの編集'
+    },
+    form: {
+      userName: '名',
+      userEmail: 'Eメール',
+      userRole: '役割',
+      userPassword: 'パスワード',
+      userConfirmPassword: '確認',
+      changePassword: 'パスワードを変更'
+    }
+  },
+
+  device: {
+    listings: {
+      deviceId: 'デバイス番号',
+      serialNumber: '通し番号',
+      deviceName: '名',
+      owner: '主人',
+      lastUpdated: '最終更新時刻',
+      selectCompany: '会社を選択',
+      newDevice: 'デバイスを追加',
+      freeTextSearchPlaceholder: 'デバイス名を入力'
+    },
+    new: {
+      title: 'デバイスを追加'
+    },
+    edit: {
+      title: 'デバイスを編集'
+    },
+    form: {
+      deviceName: 'デバイス名',
+      serialNumber: '通し番号',
+      registerDate: '登録日',
+      mutatedDate: '変更された日付',
+      deviceStatus: 'デバイス状態',
+      status: {
+        pending: '保留中',
+        maintaining: '維持中',
+        broken: '壊れた',
+        unknown: '不詳'
+      },
+      operatingSystem: 'OS',
+      android: 'アンドロイド',
+      embedded: '埋め込み'
+    },
+    maintenance: {
+      card: {
+        title: 'デバイス情報',
+        basicInfo: '基本情報',
+        notfound: '履歴が見つかりません',
+        noImage: '写真がなし'
+      },
+      history: {
+        viewMemo: 'メモを見る'
+      },
+      memo: {
+        textarea: 'メモを入力',
+        notfound: 'メモが見つかりません',
+        newMomo: 'メモを追加',
+        editMemo: 'メモを編集',
+        memo: 'メモ'
+      }
+    }
+  },
+  general: {
+    reset: 'リセット',
+    save: '保存',
+    images: '写真',
+    description: '内容',
+    edit: '編集',
+    delete: '削除',
+    action: '活動',
+    back: '戻る',
+    cancel: 'キャンセル',
+    confirm: '確認',
+    warning: '注意',
+    id: '番号',
+    history: '履歴',
+    company: '会社',
+    image: '写真',
+    createdAt: '作成日',
+    updatedAt: '編集日',
+    newest: '最新',
+    oldest: '最古',
+    admin: '管理者',
+    user: '一般のユーザー',
+    readOnly: '読み取り専用のユーザー',
+    all: 'すべて'
+  },
+  notfound: {
+    oops: 'おっと',
+    largeText: 'こちらのページがありませんが、',
+    smallText: '入力したURLが正しいことを確認するか、下のボタンをクリックしてトップページページに戻ってください',
+    backToTopPage: 'トップページへ'
   }
 }
+

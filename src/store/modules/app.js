@@ -8,7 +8,8 @@ const state = {
   },
   device: 'desktop',
   language: getLanguage(),
-  size: Cookies.get('size') || 'medium'
+  size: Cookies.get('size') || 'medium',
+  apiEndpoint: process.env.VUE_APP_BASE_API
 }
 
 const mutations = {

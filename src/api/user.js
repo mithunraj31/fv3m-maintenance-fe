@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function login(data) {
   return request({
-    url: '/vue-element-admin/user/login',
+    url: '/login',
     method: 'post',
     data
   })
@@ -22,3 +22,62 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function fetchUsers(query) {
+  return request({
+    url: `/users?perPage=${query.limit}&page=${query.page}`,
+    method: 'get'
+  })
+}
+
+export function fetchUserById(userId) {
+  return request({
+    url: `/users/${userId}`,
+    method: 'get'
+  })
+}
+
+export function newUser(user) {
+  const data = {
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    password: user.password
+  }
+  return request({
+    url: `/users`,
+    method: 'post',
+    data
+  })
+}
+
+export function editUser(user) {
+  const data = {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    password: user.password
+  }
+
+  return request({
+    url: `/users/${data.id}`,
+    method: 'put',
+    data
+  })
+}
+
+export function deleteUser(id) {
+  return request({
+    url: `/users/${id}`,
+    method: 'delete'
+  })
+}
+
+export function isEmailAlreadyRegistered(email) {
+  return request({
+    url: `/users/verify/email?val=${email}`,
+    method: 'get'
+  })
+}
+

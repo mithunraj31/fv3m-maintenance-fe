@@ -7,10 +7,10 @@ Vue.use(Router)
 import Layout from '@/layout'
 
 /* Router Modules */
-import componentsRouter from './modules/components'
-import chartsRouter from './modules/charts'
-import tableRouter from './modules/table'
-import nestedRouter from './modules/nested'
+// import componentsRouter from './modules/components'
+// import chartsRouter from './modules/charts'
+// import tableRouter from './modules/table'
+// import nestedRouter from './modules/nested'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -80,6 +80,40 @@ export const constantRoutes = [
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
         meta: { title: 'dashboard', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/devices',
+    component: Layout,
+    redirect: '/devices/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/devices/index'),
+        name: 'Devices',
+        meta: { title: 'deviceListings', icon: 'el-icon-mobile', noCache: true }
+      },
+      {
+        path: 'new',
+        component: () => import('@/views/devices/new-device/index'),
+        name: 'NewDevice',
+        hidden: true,
+        meta: { title: 'newDevice', noCache: true }
+      },
+      {
+        path: ':id/edit',
+        component: () => import('@/views/devices/edit-device/index'),
+        name: 'EditDevice',
+        hidden: true,
+        meta: { title: 'editDevice', noCache: true, breadcrumbTitle: 'editDeviceBreadcrumbTitle' }
+      },
+      {
+        path: ':id/maintenance-histories',
+        component: () => import('@/views/devices/maintenance-history/index'),
+        name: 'MaintenanceHistory',
+        hidden: true,
+        meta: { title: 'maintenanceHistory', noCache: true, breadcrumbTitle: 'maintenanceHistoryBreadcrumbTitle' }
       }
     ]
   },
@@ -175,7 +209,42 @@ export const constantRoutes = [
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
-export const asyncRoutes = []
+export const asyncRoutes = [
+  // 404 page must be placed at the end !!!
+  { path: '*', redirect: '/404', hidden: true },
+  {
+    path: '/users',
+    component: Layout,
+    redirect: '/users/index',
+    meta: { roles: ['admin'] },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/user/index'),
+        name: 'User',
+        meta: {
+          title: 'userListings',
+          icon: 'el-icon-user',
+          noCache: true
+        }
+      },
+      {
+        path: 'new',
+        component: () => import('@/views/user/new-user/index'),
+        name: 'NewUser',
+        hidden: true,
+        meta: { title: 'newUser', noCache: false }
+      },
+      {
+        path: ':id/edit',
+        component: () => import('@/views/user/edit-user/index'),
+        name: 'EditUser',
+        hidden: true,
+        meta: { title: 'editUser', icon: 'el-icon-mobile', noCache: true, breadcrumbTitle: 'editUserBreadcrumbTitle' }
+      }
+    ]
+  }
+]
 
 // export const originalAsyncRoutes = [
 //   {
@@ -445,15 +514,14 @@ export const asyncRoutes = []
 //     ]
 //   },
 
-//   // 404 page must be placed at the end !!!
-//   { path: '*', redirect: '/404', hidden: true }
 // ]
 
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes
+  })
 
 const router = createRouter()
 
