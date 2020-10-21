@@ -259,7 +259,7 @@ export default {
       userEmail: 'Eメール',
       userRole: '役割',
       userPassword: 'パスワード',
-      userConfirmPassword: 'パスワードを認証',
+      userConfirmPassword: '確認',
       changePassword: 'パスワードを変更'
     }
   },

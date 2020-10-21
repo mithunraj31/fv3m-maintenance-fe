@@ -92,7 +92,7 @@ export default {
             }
           })
           .catch(() => {
-            callback(new Error(this.$t('message.emailAlreadyRegistered')))
+            callback(new Error(this.$t('message.somethingWentWrong')))
           })
       } else {
         callback()
@@ -189,4 +189,5 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

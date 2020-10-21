@@ -254,7 +254,7 @@ export default {
       userEmail: 'Email',
       userRole: 'Role',
       userPassword: 'Password',
-      userConfirmPassword: 'Confirm Password',
+      userConfirmPassword: 'Confirm',
       changePassword: 'Change Password'
     }
   },
