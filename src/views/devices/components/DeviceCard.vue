@@ -10,7 +10,7 @@
           v-for="img in device.images"
           :key="img.id"
           class="device-image"
-          :style="{ 'background-image': `url(${img.url})` }"
+          :style="{ 'background-image': `url(${img.full_url})` }"
         />
       </el-carousel>
       <div v-if="!device.images || device.images.length == 0" class="no-image">

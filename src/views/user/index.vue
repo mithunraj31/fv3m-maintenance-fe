@@ -30,7 +30,7 @@
               >
                 {{ $t("general.edit") }}
               </el-button>
-              <el-button :disabled="scope.row.role === 'admin'" type="danger" size="small" @click="onDeleteUserClicked(scope.row.id)">
+              <el-button v-if="scope.row.role !== 'admin'" type="danger" size="small" @click="onDeleteUserClicked(scope.row.id)">
                 {{ $t("general.delete") }}
               </el-button>
             </template>

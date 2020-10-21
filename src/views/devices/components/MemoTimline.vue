@@ -24,7 +24,7 @@
                     v-for="img in item.images"
                     :key="img.id"
                     class="memo-image"
-                    :style="{ 'background-image': `url(${img.url})` }"
+                    :style="{ 'background-image': `url(${img.full_url})` }"
                   />
                 </el-carousel>
               </div>
@@ -215,7 +215,7 @@ export default {
       this.fileList = data.images.map(x => {
         return {
           name: x.url,
-          url: x.url
+          url: x.full_url
         }
       })
     },

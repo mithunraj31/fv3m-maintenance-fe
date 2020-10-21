@@ -27,7 +27,7 @@ export default {
       status: data.status_id,
       customerId: data.customer_id,
       fileList: data.images && data.images.length > 0 ? data.images.map(x => {
-        return { name: x.url, url: x.url }
+        return { name: x.url, url: x.full_url }
       }) : [],
       statusId: data.status_id,
       serialNumber: data.serial_number,

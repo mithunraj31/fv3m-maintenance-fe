@@ -1,6 +1,11 @@
 import request from '@/utils/request'
 import * as moment from 'moment'
 
+const getImageUrl = (uri) => {
+  const url = new URL(uri.url)
+  return url.pathname.replace(/^\/|\/$/g, '')
+}
+
 export function fetchDevices(query, cancelToken = null) {
   let url = `/devices?perPage=${query.limit}&page=${query.page}`
 
@@ -41,7 +46,7 @@ export function newDevice(device) {
     name: device.name,
     customer_id: device.customerId,
     status_id: device.status,
-    imageUrls: device.imageUrls.map(x => x.url),
+    imageUrls: device.imageUrls.map(getImageUrl),
     serial_number: device.serialNumber,
     regist_date: moment(device.registerDate).format('YYYY-MM-DD'),
     mutated_date: moment(device.mutatedDate).format('YYYY-MM-DD'),
@@ -62,7 +67,7 @@ export function editDevice(device) {
     name: device.name,
     customer_id: device.customerId,
     status_id: device.status,
-    imageUrls: device.imageUrls.map(x => x.url),
+    imageUrls: device.imageUrls.map(getImageUrl),
     serial_number: device.serialNumber,
     regist_date: moment(device.registerDate).format('YYYY-MM-DD'),
     mutated_date: moment(device.mutatedDate).format('YYYY-MM-DD'),
@@ -103,7 +108,7 @@ export function newMemo(memo) {
     name: memo.description, // temp value TODO: pongpeera
     maintenance_id: memo.maintenanceId,
     description: memo.description,
-    imageUrls: memo.imageUrls.map(x => x.url)
+    imageUrls: memo.imageUrls.map(getImageUrl)
   }
 
   return request({
@@ -119,7 +124,7 @@ export function editMemo(memo) {
     name: memo.description, // temp value TODO: pongpeera
     maintenance_id: memo.maintenanceId,
     description: memo.description,
-    imageUrls: memo.imageUrls.map(x => x.url)
+    imageUrls: memo.imageUrls.map(getImageUrl)
   }
 
   return request({
