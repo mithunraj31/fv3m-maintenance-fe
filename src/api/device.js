@@ -1,10 +1,17 @@
 import request from '@/utils/request'
 import * as moment from 'moment'
 
-export function fetchDevices(query) {
+export function fetchDevices(query, cancelToken = null) {
+  let url = `/devices?perPage=${query.limit}&page=${query.page}`
+
+  if (query.freeTextSearch && query.freeTextSearch) {
+    url += `&search=${query.freeTextSearch}`
+  }
+
   return request({
-    url: `/devices?perPage=${query.limit}&page=${query.page}`,
-    method: 'get'
+    url,
+    method: 'get',
+    cancelToken
   })
 }
 
@@ -15,10 +22,17 @@ export function fetchDeviceById(id) {
   })
 }
 
-export function fetchDeviceByCustomerId(customerId, query) {
+export function fetchDeviceByCustomerId(customerId, query, cancelToken = null) {
+  let url = `/customers/${customerId}/devices?perPage=${query.limit}&page=${query.page}`
+
+  if (query.freeTextSearch && query.freeTextSearch) {
+    url += `&search=${query.freeTextSearch}`
+  }
+
   return request({
-    url: `/customers/${customerId}/devices?perPage=${query.limit}&page=${query.page}`,
-    method: 'get'
+    url,
+    method: 'get',
+    cancelToken
   })
 }
 

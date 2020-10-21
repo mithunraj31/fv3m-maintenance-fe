@@ -7,6 +7,10 @@
       @change="onCustomerSelected"
     >
       <el-option
+        :label="$t('general.all')"
+        :value="0"
+      />
+      <el-option
         v-for="customer in customers"
         :key="customer.name"
         :label="customer.name"

@@ -1,10 +1,14 @@
 <template>
   <div class="app-container">
-    <el-row class="filter-section">
-      <el-col :span="20">
+    <el-row class="filter-section" :gutter="2">
+      <el-col :span="3">
         <customer-selector @onCustomerSelected="fetchListings" />
+
       </el-col>
-      <el-col :span="4" class="new-device-button-section">
+      <el-col :span="3">
+        <el-input v-model="listQuery.freeTextSearch" :placeholder="$t('device.listings.freeTextSearchPlaceholder')" @input="onInputFreeTextSearch" />
+      </el-col>
+      <el-col :span="3" class="new-device-button-section" :offset="15">
         <el-button type="primary" @click="$router.push('/devices/new')">{{
           this.$t("device.new.title")
         }}</el-button>
@@ -88,6 +92,8 @@ import Pagination from '@/components/Pagination'
 import CustomerSelector from './components/CustomerSelector'
 import moment from 'moment'
 import permission from '@/directive/permission/index.js'
+import debounce from 'lodash/debounce'
+import axios from 'axios'
 
 export default {
   name: 'DeviceListings',
@@ -99,9 +105,11 @@ export default {
       total: 0,
       listQuery: {
         page: 1,
-        limit: 10
+        limit: 10,
+        freeTextSearch: ''
       },
-      loading: false
+      loading: false,
+      cancelSource: null
     }
   },
   async created() {
@@ -125,15 +133,24 @@ export default {
       }
     },
     async fetchListings(selectedCustomerId) {
+      this.selectedCustomerId = selectedCustomerId
       let response = null
       this.loading = true
-      if (selectedCustomerId && selectedCustomerId > 0) {
+
+      if (this.cancelSource) {
+        this.cancelSource.cancel('CANCELLED_REQUEST_TOKEN')
+      }
+      this.cancelSource = axios.CancelToken.source()
+      const cancelToken = this.cancelSource.token
+
+      if (this.selectedCustomerId && this.selectedCustomerId > 0) {
         response = await fetchDeviceByCustomerId(
-          selectedCustomerId,
-          this.listQuery
+          this.selectedCustomerId,
+          this.listQuery,
+          cancelToken
         )
       } else {
-        response = await fetchDevices(this.listQuery)
+        response = await fetchDevices(this.listQuery, cancelToken)
       }
       const { data, meta } = response
       this.devices = data.map(this.mapDevicesToDataTable)
@@ -142,6 +159,7 @@ export default {
       this.$router.push({
         query: this.listQuery
       })
+      this.cancelSource = null
     },
     onDeleteDeviceClicked(id) {
       let deleteConfirmMessage = this.$t('message.confirmDelete')
@@ -176,7 +194,11 @@ export default {
     },
     async onPaged() {
       await this.fetchListings(this.selectedCustomerId)
-    }
+    },
+    // used normal function instead arrow function because the lexical scope
+    onInputFreeTextSearch: debounce(async function(value) {
+      await this.fetchListings(this.selectedCustomerId)
+    }, 500)
   }
 }
 </script>

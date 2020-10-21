@@ -269,7 +269,8 @@ export default {
       owner: '主人',
       lastUpdated: '最終更新時刻',
       selectCompany: '会社を選択',
-      newDevice: 'デバイスを追加'
+      newDevice: 'デバイスを追加',
+      freeTextSearchPlaceholder: 'デバイス名を入力'
     },
     new: {
       title: 'デバイスを追加'
@@ -334,7 +335,8 @@ export default {
     oldest: '最古',
     admin: '管理者',
     user: '一般のユーザー',
-    readOnly: '読み取り専用のユーザー'
+    readOnly: '読み取り専用のユーザー',
+    all: 'すべて'
   },
   notfound: {
     oops: 'おっと',

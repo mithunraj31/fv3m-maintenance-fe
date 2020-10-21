@@ -264,7 +264,8 @@ export default {
       deviceName: 'Name',
       owner: 'Owner',
       lastUpdated: 'Last updated',
-      selectCompany: 'Select company'
+      selectCompany: 'Select company',
+      freeTextSearchPlaceholder: 'Try input device name'
     },
     new: {
       title: 'New Deivce'
@@ -329,7 +330,8 @@ export default {
     oldest: 'Oldest',
     admin: 'Admin',
     user: 'user',
-    readOnly: 'Read only'
+    readOnly: 'Read only',
+    all: 'All'
   },
   notfound: {
     oops: 'Opps',
