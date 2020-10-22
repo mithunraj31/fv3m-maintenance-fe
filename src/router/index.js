@@ -243,6 +243,38 @@ export const asyncRoutes = [
         meta: { title: 'editUser', icon: 'el-icon-mobile', noCache: true, breadcrumbTitle: 'editUserBreadcrumbTitle' }
       }
     ]
+  },
+  {
+    path: '/customers',
+    component: Layout,
+    redirect: '/customers/index',
+    meta: { roles: ['admin'] },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/customer/index'),
+        name: 'Customer',
+        meta: {
+          title: 'customerListings',
+          icon: 'el-icon-user',
+          noCache: true
+        }
+      },
+      {
+        path: 'new',
+        component: () => import('@/views/customer/new-customer/index'),
+        name: 'NewCustomer',
+        hidden: true,
+        meta: { title: 'newCustomer', noCache: false }
+      },
+      {
+        path: ':id/edit',
+        component: () => import('@/views/customer/edit-customer/index'),
+        name: 'EditCustomer',
+        hidden: true,
+        meta: { title: 'editCustomer', icon: 'el-icon-mobile', noCache: true, breadcrumbTitle: 'editCustomerBreadcrumbTitle' }
+      }
+    ]
   }
 ]
 
