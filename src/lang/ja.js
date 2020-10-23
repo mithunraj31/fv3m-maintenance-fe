@@ -208,7 +208,6 @@ export default {
     invalidLength: 'パスワードは6文字以上である必要があります。',
     emailNotValid: '有効なメールアドレスを入力してください',
     emailAlreadyRegistered: 'すでに登録されたメール',
-    customerAlreadyRegistered: '顧客はすでに登録済み',
     customerNameRequired: '顧客名が必要',
     customerDescriptionRequired: '顧客説明必須',
     deviceNameRequired: 'デバイス名は必要があります',
@@ -328,7 +327,7 @@ export default {
   },
   customer: {
     listings: {
-      id: '顧客番号',
+      id: '番号',
       name: '顧客名',
       description: '説明',
       updated: '最終更新時刻'
@@ -341,6 +340,7 @@ export default {
     },
     form: {
       name: '顧客名',
+      furigana: 'ふりがな',
       description: '説明'
     }
   },

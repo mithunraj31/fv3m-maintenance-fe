@@ -6,8 +6,11 @@
           <el-form-item :label="this.$t('customer.form.name')" prop="name">
             <el-input v-model="form.name" />
           </el-form-item>
+          <el-form-item :label="this.$t('customer.form.furigana')" prop="furigana">
+            <el-input v-model="form.furigana" />
+          </el-form-item>
           <el-form-item :label="this.$t('customer.form.description')" prop="description">
-            <el-input v-model="form.description" />
+            <el-input v-model="form.description" type="textarea" />
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="this.onSubmit">{{
@@ -24,9 +27,6 @@
 </template>
 
 <script>
-import {
-  isCustomerAlreadyRegistered
-} from '@/api/customer'
 export default {
   name: 'CustomerForm',
   props: {
@@ -36,7 +36,8 @@ export default {
         return {
           id: 0,
           name: '',
-          description: ''
+          description: '',
+          furigana: ''
         }
       }
     }
@@ -45,40 +46,17 @@ export default {
     const validateName = (rule, value, callback) => {
       if (!value) {
         callback(new Error(this.$t('message.customerNameRequired')))
-      } else if (
-        this.previousName === '' ||
-                (this.previousName !== '' && this.previousName !== value)
-      ) {
-        isCustomerAlreadyRegistered(value)
-          .then((response) => {
-            if (response.is_exists) {
-              callback(new Error(this.$t('message.customerAlreadyRegistered')))
-            } else {
-              callback()
-            }
-          })
-          .catch(() => {
-            callback(new Error(this.$t('message.somethingWentWrong')))
-          })
-      } else {
-        callback()
-      }
-    }
-
-    const validateDescription = (rule, value, callback) => {
-      if (!value) {
-        callback(new Error(this.$t('message.customerDescriptionRequired')))
       } else {
         callback()
       }
     }
 
     return {
-      previousName: '',
       form: {
         id: 0,
         name: '',
-        description: ''
+        description: '',
+        furigana: ''
       },
       dialogVisible: false,
       formRules: {
@@ -88,9 +66,10 @@ export default {
           validator: validateName
         }],
         description: [{
-          required: true,
-          trigger: 'blur',
-          validator: validateDescription
+          required: false
+        }],
+        furigana: [{
+          required: false
         }]
       }
     }
@@ -100,7 +79,7 @@ export default {
       this.form.id = newCustomer.id
       this.form.name = newCustomer.name
       this.form.description = newCustomer.description
-      this.previousName = newCustomer.name
+      this.form.furigana = newCustomer.furigana
     }
   },
   methods: {
