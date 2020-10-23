@@ -17,7 +17,8 @@ export function fetchCustomerById(customerId) {
 export function newCustomer(customer) {
   const data = {
     name: customer.name,
-    description: customer.description
+    description: customer.description,
+    furigana: customer.furigana
   }
   return request({
     url: `/customers`,
@@ -30,7 +31,8 @@ export function editCustomer(customer) {
   const data = {
     id: customer.id,
     name: customer.name,
-    description: customer.description
+    description: customer.description,
+    furigana: customer.furigana
   }
 
   return request({

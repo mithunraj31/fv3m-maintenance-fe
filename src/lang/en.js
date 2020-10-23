@@ -335,6 +335,7 @@ export default {
     },
     form: {
       name: 'Name',
+      furigana: 'Furigana',
       description: 'Description'
     }
   },

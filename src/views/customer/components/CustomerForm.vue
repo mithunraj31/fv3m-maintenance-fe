@@ -6,6 +6,9 @@
           <el-form-item :label="this.$t('customer.form.name')" prop="name">
             <el-input v-model="form.name" />
           </el-form-item>
+          <el-form-item :label="this.$t('customer.form.furigana')" prop="furigana">
+            <el-input v-model="form.furigana" />
+          </el-form-item>
           <el-form-item :label="this.$t('customer.form.description')" prop="description">
             <el-input v-model="form.description" type="textarea" />
           </el-form-item>
@@ -33,7 +36,8 @@ export default {
         return {
           id: 0,
           name: '',
-          description: ''
+          description: '',
+          furigana: ''
         }
       }
     }
@@ -51,7 +55,8 @@ export default {
       form: {
         id: 0,
         name: '',
-        description: ''
+        description: '',
+        furigana: ''
       },
       dialogVisible: false,
       formRules: {
@@ -61,8 +66,10 @@ export default {
           validator: validateName
         }],
         description: [{
-          required: false,
-          trigger: 'blur'
+          required: false
+        }],
+        furigana: [{
+          required: false
         }]
       }
     }
@@ -72,6 +79,7 @@ export default {
       this.form.id = newCustomer.id
       this.form.name = newCustomer.name
       this.form.description = newCustomer.description
+      this.form.furigana = newCustomer.furigana
     }
   },
   methods: {

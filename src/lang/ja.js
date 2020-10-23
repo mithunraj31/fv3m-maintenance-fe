@@ -340,6 +340,7 @@ export default {
     },
     form: {
       name: '顧客名',
+      furigana: 'ふりがな',
       description: '説明'
     }
   },

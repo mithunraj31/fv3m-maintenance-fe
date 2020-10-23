@@ -31,7 +31,8 @@ export default {
     this.customer = {
       id: +this.$route.params.id,
       name: data.name,
-      description: data.description
+      description: data.description,
+      furigana: data.furigana
     }
     this.loading = false
   },
