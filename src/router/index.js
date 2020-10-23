@@ -256,7 +256,7 @@ export const asyncRoutes = [
         name: 'Customer',
         meta: {
           title: 'customerListings',
-          icon: 'el-icon-user',
+          icon: 'el-icon-s-custom',
           noCache: true
         }
       },

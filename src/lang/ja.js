@@ -208,6 +208,7 @@ export default {
     invalidLength: 'パスワードは6文字以上である必要があります。',
     emailNotValid: '有効なメールアドレスを入力してください',
     emailAlreadyRegistered: 'すでに登録されたメール',
+    customerAlreadyRegistered: '顧客はすでに登録済み',
     customerNameRequired: '顧客名が必要',
     customerDescriptionRequired: '顧客説明必須',
     deviceNameRequired: 'デバイス名は必要があります',
