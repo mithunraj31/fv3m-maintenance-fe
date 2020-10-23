@@ -68,10 +68,10 @@ export default {
     newUser: 'ユーザーを追加',
     editUser: 'ユーザーID:{0}を編集',
     editUserBreadcrumbTitle: 'ユーザーを編集',
-    customerListings: 'お客様',
-    newCustomer: '新規のお客様',
-    editCustomer: 'お客様ID:{0}を編集',
-    editCustomerBreadcrumbTitle: '顧客の編集',
+    customerListings: '顧客',
+    newCustomer: '顧客を追加',
+    editCustomer: '顧客ID:{0}を編集',
+    editCustomerBreadcrumbTitle: '顧客を編集',
     newDevice: 'デバイスを追加',
     editDevice: 'デバイスID:{0}を編集',
     editDeviceBreadcrumbTitle: 'デバイスを編集',
@@ -334,7 +334,7 @@ export default {
       updated: '最終更新時刻'
     },
     new: {
-      title: '新規顧客'
+      title: '顧客を追加'
     },
     edit: {
       title: '顧客の編集'
@@ -348,7 +348,7 @@ export default {
     reset: 'リセット',
     save: '保存',
     images: '写真',
-    description: '内容',
+    description: '説明',
     edit: '編集',
     delete: '削除',
     action: '活動',
