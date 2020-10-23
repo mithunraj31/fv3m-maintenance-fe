@@ -47,10 +47,3 @@ export function deleteCustomer(id) {
   })
 }
 
-export function isCustomerAlreadyRegistered(name) {
-  return request({
-    url: `/customers/verify/name?val=${name}`,
-    method: 'get'
-  })
-}
-

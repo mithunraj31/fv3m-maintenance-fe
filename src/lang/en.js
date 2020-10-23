@@ -212,7 +212,6 @@ export default {
     invalidLength: 'Password should be minimum 6 characters.',
     emailNotValid: 'Enter a valid email',
     emailAlreadyRegistered: 'Email Already Registered',
-    customerAlreadyRegistered: 'Customer Already Registered',
     customerNameRequired: 'Customer Name Required',
     customerDescriptionRequired: 'Customer Desceiption  Required',
     deviceNameRequired: 'Device name is required',
@@ -335,7 +334,7 @@ export default {
       title: 'Edit Customer'
     },
     form: {
-      name: 'Customer Name',
+      name: 'Name',
       description: 'Description'
     }
   },
