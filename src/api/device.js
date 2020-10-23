@@ -48,8 +48,8 @@ export function newDevice(device) {
     status_id: device.status,
     imageUrls: device.imageUrls.map(getImageUrl),
     serial_number: device.serialNumber,
-    regist_date: moment(device.registerDate).format('YYYY-MM-DD'),
-    mutated_date: moment(device.mutatedDate).format('YYYY-MM-DD'),
+    regist_date: device.registerDate ? moment(device.registerDate).format('YYYY-MM-DD') : '',
+    mutated_date: device.mutatedDate ? moment(device.mutatedDate).format('YYYY-MM-DD') : '',
     os: device.os,
     description: device.description
   }
@@ -69,8 +69,8 @@ export function editDevice(device) {
     status_id: device.status,
     imageUrls: device.imageUrls.map(getImageUrl),
     serial_number: device.serialNumber,
-    regist_date: moment(device.registerDate).format('YYYY-MM-DD'),
-    mutated_date: moment(device.mutatedDate).format('YYYY-MM-DD'),
+    regist_date: device.registerDate ? moment(device.registerDate).format('YYYY-MM-DD') : '',
+    mutated_date: device.mutatedDate ? moment(device.mutatedDate).format('YYYY-MM-DD') : '',
     os: device.os,
     description: device.description
   }

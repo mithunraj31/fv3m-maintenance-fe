@@ -3,7 +3,7 @@
     <el-row>
       <el-col :span="12">
         <el-form ref="form" :rules="formRules" :model="form" label-width="120px">
-          <el-form-item :label="this.$t('general.company')">
+          <el-form-item :label="this.$t('general.company')" required>
             <customer-selector :customer-id="device.customerId" @onCustomerSelected="onCustomerSelected" />
           </el-form-item>
           <el-form-item :label="this.$t('general.images')">
@@ -53,7 +53,7 @@
               <el-radio :label="1">{{ this.$t('device.form.status.pending') }}</el-radio>
               <el-radio :label="2">{{ this.$t('device.form.status.maintaining') }}</el-radio>
               <el-radio :label="3">{{ this.$t('device.form.status.broken') }}</el-radio>
-              <el-radio :label="0">{{ this.$t('device.form.status.unknown') }}</el-radio>
+              <el-radio :label="4" checked>{{ this.$t('device.form.status.unknown') }}</el-radio>
             </el-radio-group>
           </el-form-item>
           <el-form-item :label="this.$t('device.form.operatingSystem')">
@@ -88,7 +88,7 @@ export default {
         return {
           id: 0,
           name: '',
-          status: 0,
+          status: 4,
           serialNumber: '',
           registerDate: '',
           os: 0,
@@ -119,7 +119,7 @@ export default {
       form: {
         id: 0,
         name: '',
-        status: 0,
+        status: 4,
         serialNumber: '',
         registerDate: '',
         os: 0,
