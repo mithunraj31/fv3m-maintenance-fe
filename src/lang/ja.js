@@ -68,6 +68,10 @@ export default {
     newUser: 'ユーザーを追加',
     editUser: 'ユーザーID:{0}を編集',
     editUserBreadcrumbTitle: 'ユーザーを編集',
+    customerListings: '顧客',
+    newCustomer: '顧客を追加',
+    editCustomer: '顧客ID:{0}を編集',
+    editCustomerBreadcrumbTitle: '顧客を編集',
     newDevice: 'デバイスを追加',
     editDevice: 'デバイスID:{0}を編集',
     editDeviceBreadcrumbTitle: 'デバイスを編集',
@@ -204,6 +208,8 @@ export default {
     invalidLength: 'パスワードは6文字以上である必要があります。',
     emailNotValid: '有効なメールアドレスを入力してください',
     emailAlreadyRegistered: 'すでに登録されたメール',
+    customerNameRequired: '顧客名が必要',
+    customerDescriptionRequired: '顧客説明必須',
     deviceNameRequired: 'デバイス名は必要があります',
     serialNumberRequired: '通し番号は必要があります',
     deviceHasBeenCreated: 'デバイスが作成されました',
@@ -216,7 +222,10 @@ export default {
     memoHasBeenDeleted: 'メモが削除されました',
     userHasBeenCreated: 'ユーザーが作成されました',
     userHasBeenDeleted: 'ユーザーが削除されました',
-    userHasBeenEdited: 'ユーザーが編集されました'
+    userHasBeenEdited: 'ユーザーが編集されました',
+    customerHasBeenCreated: '顧客が作成されました',
+    customerHasBeenDeleted: '顧客が削除されました',
+    customerHasBeenEdited: '顧客が編集されました'
   },
   error: {
     accountIncorrect: 'ユーザー名又はパスワードが間違っています'
@@ -316,11 +325,30 @@ export default {
       }
     }
   },
+  customer: {
+    listings: {
+      id: '番号',
+      name: '顧客名',
+      description: '説明',
+      updated: '最終更新時刻'
+    },
+    new: {
+      title: '顧客を追加'
+    },
+    edit: {
+      title: '顧客の編集'
+    },
+    form: {
+      name: '顧客名',
+      furigana: 'ふりがな',
+      description: '説明'
+    }
+  },
   general: {
     reset: 'リセット',
     save: '保存',
     images: '写真',
-    description: '内容',
+    description: '説明',
     edit: '編集',
     delete: '削除',
     action: '活動',

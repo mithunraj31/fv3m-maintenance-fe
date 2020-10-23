@@ -12,7 +12,7 @@
         <div v-if="history.images && history.images.length > 0" class="user-images">
           <el-carousel :interval="6000" type="card" height="220px">
             <el-carousel-item v-for="image in history.images" :key="image.id">
-              <img :src="image.url" class="image">
+              <img :src="image.full_url" class="image">
             </el-carousel-item>
           </el-carousel>
         </div>

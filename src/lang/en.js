@@ -69,6 +69,10 @@ export default {
     editUser: 'Edit user id: {0}',
     newDevice: 'New device',
     editUserBreadcrumbTitle: 'Edit user',
+    customerListings: 'Customer listings',
+    newCustomer: 'New customer',
+    editCustomer: 'Edit customer id: {0}',
+    editCustomerBreadcrumbTitle: 'Edit customer',
     maintenanceHistoryBreadcrumbTitle: 'Maintenance history',
     editDeviceBreadcrumbTitle: 'Edit device',
     editDevice: 'Edit device id: {0}',
@@ -208,6 +212,8 @@ export default {
     invalidLength: 'Password should be minimum 6 characters.',
     emailNotValid: 'Enter a valid email',
     emailAlreadyRegistered: 'Email Already Registered',
+    customerNameRequired: 'Customer Name Required',
+    customerDescriptionRequired: 'Customer Desceiption  Required',
     deviceNameRequired: 'Device name is required',
     serialNumberRequired: 'Serial number is required',
     deviceHasBeenCreated: 'Device has been created',
@@ -220,7 +226,10 @@ export default {
     memoHasBeenDeleted: 'Memo has been deleted',
     userHasBeenCreated: 'User has been created',
     userHasBeenDeleted: 'User has been deleted',
-    userHasBeenEdited: 'User has been edited'
+    userHasBeenEdited: 'User has been edited',
+    customerHasBeenCreated: 'Customer has been created',
+    customerHasBeenDeleted: 'Customer has been deleted',
+    customerHasBeenEdited: 'Customer has been edited'
   },
   error: {
     accountIncorrect: 'Username or password incorrect'
@@ -310,6 +319,27 @@ export default {
       }
     }
   },
+
+  customer: {
+    listings: {
+      id: 'ID',
+      name: 'Name',
+      description: 'Description',
+      updated: 'Last updated'
+    },
+    new: {
+      title: 'New Customer'
+    },
+    edit: {
+      title: 'Edit Customer'
+    },
+    form: {
+      name: 'Name',
+      furigana: 'Furigana',
+      description: 'Description'
+    }
+  },
+
   general: {
     reset: 'Reset',
     save: 'Save',

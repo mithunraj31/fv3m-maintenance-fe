@@ -1,27 +1,16 @@
 <template>
   <div>
-    <el-select
-      v-model="selectedCustomerId"
-      filterable
-      :placeholder="this.$t('device.listings.selectCompany')"
-      @change="onCustomerSelected"
-    >
-      <el-option
-        :label="$t('general.all')"
-        :value="0"
-      />
-      <el-option
-        v-for="customer in customers"
-        :key="customer.name"
-        :label="customer.name"
-        :value="customer.id"
-      />
+    <el-select v-model="selectedCustomerId" filterable :placeholder="this.$t('device.listings.selectCompany')" @change="onCustomerSelected">
+      <el-option :label="$t('general.all')" :value="0" />
+      <el-option v-for="customer in customers" :key="customer.name" :label="customer.name" :value="customer.id" />
     </el-select>
   </div>
 </template>
 
 <script>
-import { fetchCustomers } from '@/api/customer'
+import {
+  fetchCustomers
+} from '@/api/customer'
 
 export default {
   name: 'CustomerSelector',
@@ -52,7 +41,12 @@ export default {
       this.$emit('onCustomerSelected', this.selectedCustomerId)
     },
     async fetchData() {
-      const { data } = await fetchCustomers()
+      const {
+        data
+      } = await fetchCustomers({
+        limit: 1000,
+        page: 1
+      })
       this.customers = data
     }
   }
