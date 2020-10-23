@@ -44,7 +44,7 @@ export default {
       const {
         data
       } = await fetchCustomers({
-        limit: 0,
+        limit: 1000,
         page: 1
       })
       this.customers = data
