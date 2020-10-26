@@ -238,7 +238,7 @@ export default {
       deleteMemo(id)
         .then(() => {
           this.$message({
-            message: this.$t('message.memoeHasBeenDeleted'),
+            message: this.$t('message.userHasBeenDeleted'),
             type: 'success'
           })
           this.clear()

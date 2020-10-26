@@ -221,7 +221,7 @@ export default {
     confirmDelete: 'Are you sure you want to delete {0}?',
     deviceHasBeenDeleted: 'Device has been deleted',
     deviceHasBeenEdited: 'Device has been edited',
-    MemoHasBeenCreated: 'Memo has been created',
+    memoHasBeenCreated: 'Memo has been created',
     memoHasBeenUpdated: 'Memo has been updated',
     memoHasBeenDeleted: 'Memo has been deleted',
     userHasBeenCreated: 'User has been created',

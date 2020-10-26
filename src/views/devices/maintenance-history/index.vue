@@ -64,20 +64,24 @@ export default {
   methods: {
     async getDevice(id) {
       this.deviceLoading = true
-      const { data } = await fetchDeviceById(+this.$route.params.id)
-      this.device = {
-        id: +this.$route.params.id,
-        name: data.name,
-        status: data.status_id,
-        customerId: data.customer_id,
-        images: data.images,
-        statusId: data.status_id,
-        serialNumber: data.serial_number,
-        registerDate: data.regist_date,
-        mutatedDate: data.mutated_date,
-        os: data.os,
-        description: data.description,
-        statusName: data.status && data.status.name ? data.status.name : ''
+      try {
+        const { data } = await fetchDeviceById(+this.$route.params.id)
+        this.device = {
+          id: +this.$route.params.id,
+          name: data.name,
+          status: data.status_id,
+          customerId: data.customer_id,
+          images: data.images,
+          statusId: data.status_id,
+          serialNumber: data.serial_number,
+          registerDate: data.regist_date,
+          mutatedDate: data.mutated_date,
+          os: data.os,
+          description: data.description,
+          statusName: data.status && data.status.name ? data.status.name : ''
+        }
+      } catch (err) {
+        this.$router.push('/404')
       }
       this.deviceLoading = false
     },
