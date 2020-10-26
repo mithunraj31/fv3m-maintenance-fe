@@ -76,7 +76,10 @@ export default {
     maintenanceHistoryBreadcrumbTitle: 'Maintenance history',
     editDeviceBreadcrumbTitle: 'Edit device',
     editDevice: 'Edit device id: {0}',
-    maintenanceHistory: 'Maintenance History Device ID: {0}'
+    maintenanceHistory: 'Maintenance History Device ID: {0}',
+    newMaintenanceHistory: 'New maintenance',
+    editMaintenanceHistory: 'Edit maintenance id: {0}',
+    editMaintenanceHistoryBreadcrumbTitle: 'Edit maintenance'
   },
   navbar: {
     dashboard: 'Dashboard',

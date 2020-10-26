@@ -23,7 +23,7 @@ export default {
         .then(() => {
           this.loading = false
           this.$message({
-            message: this.$t('message.maintenanceInfoHasBeenEdited'),
+            message: this.$t('message.maintenanceInfoHasBeenCreated'),
             type: 'success'
           })
           this.$router.push(`/devices/${form.deviceId}/maintenance-histories`)
