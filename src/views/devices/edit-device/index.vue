@@ -20,23 +20,27 @@ export default {
   },
   async mounted() {
     this.loading = true
-    const { data } = await fetchDeviceById(+this.$route.params.id)
-    this.device = {
-      id: +this.$route.params.id,
-      name: data.name,
-      status: data.status_id,
-      customerId: data.customer_id,
-      fileList: data.images && data.images.length > 0 ? data.images.map(x => {
-        return { name: x.url, url: x.full_url }
-      }) : [],
-      statusId: data.status_id,
-      serialNumber: data.serial_number,
-      registerDate: data.regist_date,
-      mutatedDate: data.mutated_date,
-      os: data.os,
-      description: data.description
-
+    try {
+      const { data } = await fetchDeviceById(+this.$route.params.id)
+      this.device = {
+        id: +this.$route.params.id,
+        name: data.name,
+        status: data.status_id,
+        customerId: data.customer_id,
+        fileList: data.images && data.images.length > 0 ? data.images.map(x => {
+          return { name: x.url, url: x.full_url }
+        }) : [],
+        statusId: data.status_id,
+        serialNumber: data.serial_number,
+        registerDate: data.regist_date,
+        mutatedDate: data.mutated_date,
+        os: data.os,
+        description: data.description
+      }
+    } catch (err) {
+      this.$router.push('/404')
     }
+
     this.loading = false
   },
   methods: {

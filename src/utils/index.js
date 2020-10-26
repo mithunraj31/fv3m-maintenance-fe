@@ -364,3 +364,8 @@ export function stringFormat(format) {
       : match
   })
 }
+
+export function getImageUrl(uri) {
+  const url = new URL(uri.url)
+  return url.pathname.replace(/^\/|\/$/g, '')
+}

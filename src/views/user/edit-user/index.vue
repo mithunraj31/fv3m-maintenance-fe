@@ -25,14 +25,16 @@ export default {
   },
   async mounted() {
     this.loading = true
-    const {
-      data
-    } = await fetchUserById(+this.$route.params.id)
-    this.user = {
-      id: +this.$route.params.id,
-      name: data.name,
-      email: data.email,
-      role: data.role
+    try {
+      const { data } = await fetchUserById(+this.$route.params.id)
+      this.user = {
+        id: +this.$route.params.id,
+        name: data.name,
+        email: data.email,
+        role: data.role
+      }
+    } catch (err) {
+      this.$router.push('/404')
     }
     this.loading = false
   },

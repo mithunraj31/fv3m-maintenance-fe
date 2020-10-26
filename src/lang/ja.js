@@ -76,7 +76,11 @@ export default {
     editDevice: 'デバイスID:{0}を編集',
     editDeviceBreadcrumbTitle: 'デバイスを編集',
     maintenanceHistoryBreadcrumbTitle: 'メンテナンス履歴',
-    maintenanceHistory: 'デバイスID「{0}」のメンテナンス履歴'
+    maintenanceHistory: 'デバイスID「{0}」のメンテナンス履歴',
+    newMaintenanceHistory: 'メンテナンスを追加',
+    editMaintenanceHistory: 'メンテナンス履歴ID「{0}」を編集',
+    editMaintenanceHistoryBreadcrumbTitle: 'メンテナンス履歴を編集'
+
   },
   navbar: {
     dashboard: 'トップ',
@@ -199,10 +203,10 @@ export default {
   },
   message: {
     languageChanged: '言語が変更されました',
-    userNameRequired: 'ユーザー名が必要です',
-    emailRequired: 'メールが必要です',
-    roleRequired: '役割が必要です',
-    passwordRequired: 'パスワードが必要です',
+    userNameRequired: 'ユーザー名が必要があります',
+    emailRequired: 'メールが必要があります',
+    roleRequired: '役割が必要があります',
+    passwordRequired: 'パスワードが必要があります',
     confirmPasswordRequired: 'パスワードが必要であることを確認',
     passwordMismatch: 'パスワードの確認はパスワードと同じである必要があります',
     invalidLength: 'パスワードは6文字以上である必要があります。',
@@ -225,7 +229,11 @@ export default {
     userHasBeenEdited: 'ユーザーが編集されました',
     customerHasBeenCreated: '顧客が作成されました',
     customerHasBeenDeleted: '顧客が削除されました',
-    customerHasBeenEdited: '顧客が編集されました'
+    customerHasBeenEdited: '顧客が編集されました',
+    maintenanceInfoHasBeenCreated: 'メンテナンス履歴が作成されました',
+    maintenanceInfoHasBeenDeleted: 'メンテナンス履歴が削除されました',
+    maintenanceInfoHasBeenEdited: 'メンテナンス履歴が編集されました',
+    descriptionRequired: '説明は必要があります'
   },
   error: {
     accountIncorrect: 'ユーザー名又はパスワードが間違っています'
@@ -307,6 +315,7 @@ export default {
       embedded: '埋め込み'
     },
     maintenance: {
+      title: 'メンテナンス',
       card: {
         title: 'デバイス情報',
         basicInfo: '基本情報',
@@ -322,6 +331,12 @@ export default {
         newMomo: 'メモを追加',
         editMemo: 'メモを編集',
         memo: 'メモ'
+      },
+      newMaintenance: {
+        title: 'メンテナンス情報を追加'
+      },
+      editMaintenance: {
+        title: 'メンテナンス情報を編集'
       }
     }
   },
@@ -367,7 +382,9 @@ export default {
     admin: '管理者',
     user: '一般のユーザー',
     readOnly: '読み取り専用のユーザー',
-    all: 'すべて'
+    all: 'すべて',
+    latitude: '緯度 (Lat)',
+    longitude: '経度 (Lng)'
   },
   notfound: {
     oops: 'おっと',

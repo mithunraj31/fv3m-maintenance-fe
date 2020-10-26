@@ -221,7 +221,7 @@ export default {
     confirmDelete: 'Are you sure you want to delete {0}?',
     deviceHasBeenDeleted: 'Device has been deleted',
     deviceHasBeenEdited: 'Device has been edited',
-    MemoHasBeenCreated: 'Memo has been created',
+    memoHasBeenCreated: 'Memo has been created',
     memoHasBeenUpdated: 'Memo has been updated',
     memoHasBeenDeleted: 'Memo has been deleted',
     userHasBeenCreated: 'User has been created',
@@ -229,7 +229,11 @@ export default {
     userHasBeenEdited: 'User has been edited',
     customerHasBeenCreated: 'Customer has been created',
     customerHasBeenDeleted: 'Customer has been deleted',
-    customerHasBeenEdited: 'Customer has been edited'
+    customerHasBeenEdited: 'Customer has been edited',
+    maintenanceInfoHasBeenCreated: 'Maintenance has been created',
+    maintenanceInfoHasBeenDeleted: 'Maintenance has been deleted',
+    maintenanceInfoHasBeenEdited: 'Maintenance has been edited',
+    descriptionRequired: 'Description is required'
   },
   error: {
     accountIncorrect: 'Username or password incorrect'
@@ -301,6 +305,7 @@ export default {
       embedded: 'Embedded'
     },
     maintenance: {
+      title: 'Maintenance',
       card: {
         title: 'Device infomation',
         basicInfo: 'Basic infomation',
@@ -316,6 +321,12 @@ export default {
         newMomo: 'New memo',
         editMemo: 'Edit memo',
         memo: 'Memo'
+      },
+      newMaintenance: {
+        title: 'New maintenance'
+      },
+      editMaintenance: {
+        title: 'Edit maintenance'
       }
     }
   },
@@ -363,7 +374,9 @@ export default {
     admin: 'Admin',
     user: 'user',
     readOnly: 'Read only',
-    all: 'All'
+    all: 'All',
+    latitude: 'Latitude',
+    longitude: 'Longitude'
   },
   notfound: {
     oops: 'Opps',
