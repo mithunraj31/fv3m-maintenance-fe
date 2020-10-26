@@ -36,7 +36,6 @@ export default {
         mutatedDate: data.mutated_date,
         os: data.os,
         description: data.description
-
       }
     } catch (err) {
       this.$router.push('/404')

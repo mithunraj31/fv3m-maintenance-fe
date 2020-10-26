@@ -1,10 +1,6 @@
+import { getImageUrl } from '@/utils'
 import request from '@/utils/request'
 import * as moment from 'moment'
-
-const getImageUrl = (uri) => {
-  const url = new URL(uri.url)
-  return url.pathname.replace(/^\/|\/$/g, '')
-}
 
 export function fetchDevices(query, cancelToken = null) {
   let url = `/devices?perPage=${query.limit}&page=${query.page}`

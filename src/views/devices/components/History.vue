@@ -4,7 +4,12 @@
       <div class="post">
         <div class="user-block">
           <img class="img-circle" :src="getUserAvatar(history.user.name)">
-          <span class="username text-muted">{{ history.user.name }}</span>
+          <span class="username text-muted">
+            {{ history.user.name }}
+            <i class="el-icon-edit-outline" @click="$router.push(`/devices/${$route.params.id}/maintenance-histories/${history.id}/edit`)" />
+            <i class="el-icon-delete-solid" @click="onDeleteMaintenanceHistoryClicked(history.id)" />
+          </span>
+
           <span class="description">{{ $t('general.createdAt') }} {{ formatDate(history.created_at) }}</span>
           <span class="description">{{ $t('general.updatedAt') }} {{ formatDate(history.updated_at) }}</span>
         </div>
@@ -36,6 +41,7 @@
 import MemoTimeline from './MemoTimline'
 import { getUserAvatar } from '@/utils/user'
 import moment from 'moment'
+import { deleteMaintenance } from '@/api/maintenance'
 
 export default {
   name: 'History',
@@ -67,6 +73,37 @@ export default {
     },
     formatDate(date) {
       return moment(String(date)).format('YYYY/MM/DD hh:mm')
+    },
+    onDeleteMaintenanceHistoryClicked(id) {
+      let deleteConfirmMessage = this.$t('message.confirmDelete')
+      deleteConfirmMessage = String.format(
+        deleteConfirmMessage,
+        `${this.$t('device.maintenance.title')}: ${id}`
+      )
+
+      this.$confirm(deleteConfirmMessage, this.$t('general.warning'), {
+        confirmButtonText: this.$t('general.confirm'),
+        cancelButtonText: this.$t('general.cancel'),
+        type: 'warning'
+      }).then(() => {
+        this.deleteConfirmed(id)
+      })
+    },
+    deleteConfirmed(id) {
+      deleteMaintenance(id)
+        .then(() => {
+          this.$message({
+            message: this.$t('message.maintenanceInfoHasBeenDeleted'),
+            type: 'success'
+          })
+          this.$emit('onRefreshData')
+        })
+        .catch(() => {
+          this.$message({
+            message: this.$t('message.somethingWentWrong'),
+            type: 'danger'
+          })
+        })
     }
   }
 }
@@ -154,5 +191,9 @@ export default {
 
 .text-muted {
   color: #777;
+}
+
+.el-icon-edit-outline, .el-icon-delete-solid {
+  cursor: pointer;
 }
 </style>

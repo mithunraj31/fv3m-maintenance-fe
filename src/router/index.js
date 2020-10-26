@@ -114,6 +114,20 @@ export const constantRoutes = [
         name: 'MaintenanceHistory',
         hidden: true,
         meta: { title: 'maintenanceHistory', noCache: true, breadcrumbTitle: 'maintenanceHistoryBreadcrumbTitle' }
+      },
+      {
+        path: ':id/maintenance-histories/new',
+        component: () => import('@/views/devices/new-maintenance/index'),
+        name: 'NewMaintenanceHistory',
+        hidden: true,
+        meta: { title: 'newMaintenanceHistory', noCache: true }
+      },
+      {
+        path: ':id/maintenance-histories/:maintenanceId/edit',
+        component: () => import('@/views/devices/edit-maintenance/index'),
+        name: 'EditMaintenanceHistory',
+        hidden: true,
+        meta: { title: 'editMaintenanceHistory', noCache: true, breadcrumbTitle: 'editMaintenanceHistoryBreadcrumbTitle' }
       }
     ]
   },

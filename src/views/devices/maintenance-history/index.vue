@@ -2,6 +2,7 @@
   <div class="app-container">
     <el-row :gutter="20">
       <el-col class="order-selector" :offset="12" :span="12" :xs="12">
+        <el-button class="new-maintenance-btn" type="primary" @click="$router.push(`/devices/${$route.params.id}/maintenance-histories/new`)">{{ $t('device.maintenance.newMaintenance.title') }}</el-button>
         <el-select v-model="listQuery.order" placeholder="Select" @change="getMaintenanceData">
           <el-option
             :label="$t('general.newest')"
@@ -19,7 +20,7 @@
       <el-col v-loading="maintenanceHistoryLoading" :span="16" :xs="24" :class="{ 'history-section': !histories || histories.length == 0 }">
         <h1 v-if="!histories || histories.length == 0">{{ $t('device.maintenance.card.notfound') }}</h1>
         <el-card v-if="histories && histories.length > 0">
-          <history :histories="histories" />
+          <history :histories="histories" @onRefreshData="getMaintenanceData" />
         </el-card>
         <pagination
           v-if="histories && histories.length > 0"
@@ -107,5 +108,9 @@ export default {
 .history-section {
   display: flex;
   justify-content: center;
+}
+
+.new-maintenance-btn {
+  margin-right: 5px;
 }
 </style>
