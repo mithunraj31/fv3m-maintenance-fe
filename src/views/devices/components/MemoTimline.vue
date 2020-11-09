@@ -25,7 +25,9 @@
                     :key="img.id"
                     class="memo-image"
                     :style="{ 'background-image': `url(${img.full_url})` }"
-                  />
+                  >
+                    <div class="previewer" @click="onPreviewImage({url: img.full_url})" />
+                  </el-carousel-item>
                 </el-carousel>
               </div>
               <p>{{ timeline.updated_at }}</p>
@@ -46,6 +48,7 @@
               :on-success="onUploaded"
               :on-error="onUploadFailed"
               :on-remove="onRemveFile"
+              :on-preview="onPreviewImage"
               :before-remove="beforRemove"
               name="image"
               accept="image/png,image/jpg,image/jpeg"
@@ -64,21 +67,36 @@
             />
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSubmit">{{ this.$t('general.save') }}</el-button>
-            <el-button @click="clear">{{ this.$t('general.cancel') }}</el-button>
+            <el-button type="primary" :disabled="!form.description || form.description.length == 0" @click="onSubmit">{{ this.$t('general.save') }}</el-button>
+            <el-button @click="clear">{{ this.$t('general.clear') }}</el-button>
           </el-form-item>
         </el-form>
       </el-col>
     </el-row>
+    <template v-if="hasPreviewImage">
+      <image-viewer v-if="hasPreviewImage" :z-index="2000" :initial-index="0" :on-close="closePreviewImage" :url-list="previewImageSource" />
+    </template>
   </div>
 </template>
 
 <script>
 import { deleteMemo, editMemo, fetchMemoById, fetechMemoByMaintenaceId, newMemo } from '@/api/device'
 import moment from 'moment'
+import ImageViewer from 'element-ui/packages/image/src/image-viewer'
+
+let prevOverflow = ''
 export default {
   name: 'MemoTimeline',
+  components: { ImageViewer },
   props: {
+    previewUrl: {
+      type: Object,
+      default: () => {
+        return {
+          source: ''
+        }
+      }
+    },
     maintenanceId: {
       type: Number,
       default() {
@@ -104,6 +122,12 @@ export default {
     },
     token() {
       return this.$store.getters.token
+    },
+    previewImageSource() {
+      return [this.previewUrl.source]
+    },
+    hasPreviewImage() {
+      return this.previewUrl.source && this.previewUrl.source.length > 0
     }
   },
   watch: {
@@ -249,6 +273,16 @@ export default {
             type: 'danger'
           })
         })
+    },
+    onPreviewImage(file) {
+      // prevent body scroll
+      prevOverflow = document.body.style.overflow
+      document.body.style.overflow = 'hidden'
+      this.previewUrl.source = file.url
+    },
+    closePreviewImage() {
+      document.body.style.overflow = prevOverflow
+      this.previewUrl.source = ''
     }
   }
 }

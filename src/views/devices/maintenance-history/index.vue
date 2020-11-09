@@ -49,7 +49,7 @@ export default {
       total: 0,
       listQuery: {
         page: 1,
-        limit: 2,
+        limit: 5,
         order: 'latest'
       },
       deviceLoading: false,

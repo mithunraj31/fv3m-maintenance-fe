@@ -14,6 +14,7 @@
               :auto-upload="true"
               :on-success="onUploaded"
               :on-error="onUploadFailed"
+              :on-preview="onPreviewImage"
               :on-remove="onRemveFile"
               :before-remove="beforRemove"
               name="image"
@@ -72,16 +73,29 @@
         </el-form>
       </el-col>
     </el-row>
+    <template v-if="hasPreviewImage">
+      <image-viewer v-if="hasPreviewImage" :z-index="2000" :initial-index="0" :on-close="closePreviewImage" :url-list="previewImageSource" />
+    </template>
   </div>
 </template>
 
 <script>
 import CustomerSelector from './CustomerSelector'
+import ImageViewer from 'element-ui/packages/image/src/image-viewer'
 
+let prevOverflow = ''
 export default {
   name: 'DeviceForm',
-  components: { CustomerSelector },
+  components: { CustomerSelector, ImageViewer },
   props: {
+    previewUrl: {
+      type: Object,
+      default: () => {
+        return {
+          source: ''
+        }
+      }
+    },
     device: {
       type: Object,
       default: () => {
@@ -147,6 +161,12 @@ export default {
     },
     token() {
       return this.$store.getters.token
+    },
+    previewImageSource() {
+      return [this.previewUrl.source]
+    },
+    hasPreviewImage() {
+      return this.previewUrl.source && this.previewUrl.source.length > 0
     }
   },
   watch: {
@@ -200,6 +220,16 @@ export default {
     },
     beforRemove(file) {
       return this.$confirm(String.format(this.$t('message.confirmDelete'), this.$t('general.image')))
+    },
+    onPreviewImage(file) {
+      // prevent body scroll
+      prevOverflow = document.body.style.overflow
+      document.body.style.overflow = 'hidden'
+      this.previewUrl.source = file.url
+    },
+    closePreviewImage() {
+      document.body.style.overflow = prevOverflow
+      this.previewUrl.source = ''
     }
   }
 }
