@@ -384,7 +384,8 @@ export default {
     readOnly: '読み取り専用のユーザー',
     all: 'すべて',
     latitude: '緯度 (Lat)',
-    longitude: '経度 (Lng)'
+    longitude: '経度 (Lng)',
+    clear: '入力をクリア'
   },
   notfound: {
     oops: 'おっと',

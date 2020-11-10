@@ -15,11 +15,14 @@
         </div>
         <p>{{ history.description }}</p>
         <div v-if="history.images && history.images.length > 0" class="user-images">
-          <el-carousel :interval="6000" type="card" height="220px">
-            <el-carousel-item v-for="image in history.images" :key="image.id">
-              <img :src="image.full_url" class="image">
-            </el-carousel-item>
-          </el-carousel>
+          <el-row :gutter="8">
+            <el-col v-for="image in history.images" :key="image.id" :span="3">
+              <el-image
+                :src="image.full_url"
+                :preview-src-list="[ image.full_url] "
+              />
+            </el-col>
+          </el-row>
         </div>
         <ul class="list-inline">
           <li @click="openMemoDialog(history.id)">
@@ -157,6 +160,17 @@ export default {
 
     .user-images {
       padding-top: 20px;
+      .el-image {
+
+        .image-slot {
+
+          background: #f5f7fa;
+          color: #909399;
+          width: 100px;
+          height: 100px;
+        }
+      }
+
     }
   }
 
@@ -196,4 +210,5 @@ export default {
 .el-icon-edit-outline, .el-icon-delete-solid {
   cursor: pointer;
 }
+
 </style>

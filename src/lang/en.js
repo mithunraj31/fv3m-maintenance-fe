@@ -379,7 +379,8 @@ export default {
     readOnly: 'Read only',
     all: 'All',
     latitude: 'Latitude',
-    longitude: 'Longitude'
+    longitude: 'Longitude',
+    clear: 'Clear'
   },
   notfound: {
     oops: 'Opps',

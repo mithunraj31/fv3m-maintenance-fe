@@ -11,7 +11,7 @@
           :key="img.id"
           class="device-image"
           :style="{ 'background-image': `url(${img.full_url})` }"
-        />
+        ><div class="previewer" @click="setPreviewImage(img.full_url)" /></el-carousel-item>
       </el-carousel>
       <div v-if="!device.images || device.images.length == 0" class="no-image">
         <h2>{{ $t('device.maintenance.card.noImage') }}</h2>
@@ -65,13 +65,30 @@
         </div>
       </div>
     </div>
+    <template v-if="hasPreviewImage">
+      <image-viewer v-if="hasPreviewImage" :z-index="2000" :initial-index="0" :on-close="closePreviewImage" :url-list="previewImageSource" />
+    </template>
+
   </el-card>
 </template>
 
 <script>
+import ImageViewer from 'element-ui/packages/image/src/image-viewer'
+
+let prevOverflow = ''
+
 export default {
   name: 'DeviceCard',
+  components: { ImageViewer },
   props: {
+    previewUrl: {
+      type: Object,
+      default: () => {
+        return {
+          source: ''
+        }
+      }
+    },
     device: {
       type: Object,
       default: () => {
@@ -105,11 +122,29 @@ export default {
       } else {
         return this.$t('device.form.embedded')
       }
+    },
+    previewImageSource() {
+      return [this.previewUrl.source]
+    },
+    hasPreviewImage() {
+      return this.previewUrl.source && this.previewUrl.source.length > 0
     }
   },
   watch: {
     device: function(newDevice, oldDevice) {
       this.device = newDevice
+    }
+  },
+  methods: {
+    setPreviewImage(url) {
+      // prevent body scroll
+      prevOverflow = document.body.style.overflow
+      document.body.style.overflow = 'hidden'
+      this.previewUrl.source = url
+    },
+    closePreviewImage() {
+      document.body.style.overflow = prevOverflow
+      this.previewUrl.source = ''
     }
   }
 }
