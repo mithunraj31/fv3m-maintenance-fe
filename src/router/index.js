@@ -144,6 +144,70 @@ export const constantRoutes = [
         meta: { title: 'profile', icon: 'user', noCache: true }
       }
     ]
+  },
+  {
+    path: '/users',
+    component: Layout,
+    redirect: '/users/index',
+    meta: { roles: ['admin'] },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/user/index'),
+        name: 'User',
+        meta: {
+          title: 'userListings',
+          icon: 'el-icon-user',
+          noCache: true
+        }
+      },
+      {
+        path: 'new',
+        component: () => import('@/views/user/new-user/index'),
+        name: 'NewUser',
+        hidden: true,
+        meta: { title: 'newUser', noCache: false }
+      },
+      {
+        path: ':id/edit',
+        component: () => import('@/views/user/edit-user/index'),
+        name: 'EditUser',
+        hidden: true,
+        meta: { title: 'editUser', icon: 'el-icon-mobile', noCache: true, breadcrumbTitle: 'editUserBreadcrumbTitle' }
+      }
+    ]
+  },
+  {
+    path: '/customers',
+    component: Layout,
+    redirect: '/customers/index',
+    meta: { roles: ['admin'] },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/customer/index'),
+        name: 'Customer',
+        meta: {
+          title: 'customerListings',
+          icon: 'el-icon-s-custom',
+          noCache: true
+        }
+      },
+      {
+        path: 'new',
+        component: () => import('@/views/customer/new-customer/index'),
+        name: 'NewCustomer',
+        hidden: true,
+        meta: { title: 'newCustomer', noCache: false }
+      },
+      {
+        path: ':id/edit',
+        component: () => import('@/views/customer/edit-customer/index'),
+        name: 'EditCustomer',
+        hidden: true,
+        meta: { title: 'editCustomer', icon: 'el-icon-mobile', noCache: true, breadcrumbTitle: 'editCustomerBreadcrumbTitle' }
+      }
+    ]
   }
 ]
 
@@ -225,71 +289,7 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true },
-  {
-    path: '/users',
-    component: Layout,
-    redirect: '/users/index',
-    meta: { roles: ['admin'] },
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/user/index'),
-        name: 'User',
-        meta: {
-          title: 'userListings',
-          icon: 'el-icon-user',
-          noCache: true
-        }
-      },
-      {
-        path: 'new',
-        component: () => import('@/views/user/new-user/index'),
-        name: 'NewUser',
-        hidden: true,
-        meta: { title: 'newUser', noCache: false }
-      },
-      {
-        path: ':id/edit',
-        component: () => import('@/views/user/edit-user/index'),
-        name: 'EditUser',
-        hidden: true,
-        meta: { title: 'editUser', icon: 'el-icon-mobile', noCache: true, breadcrumbTitle: 'editUserBreadcrumbTitle' }
-      }
-    ]
-  },
-  {
-    path: '/customers',
-    component: Layout,
-    redirect: '/customers/index',
-    meta: { roles: ['admin'] },
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/customer/index'),
-        name: 'Customer',
-        meta: {
-          title: 'customerListings',
-          icon: 'el-icon-s-custom',
-          noCache: true
-        }
-      },
-      {
-        path: 'new',
-        component: () => import('@/views/customer/new-customer/index'),
-        name: 'NewCustomer',
-        hidden: true,
-        meta: { title: 'newCustomer', noCache: false }
-      },
-      {
-        path: ':id/edit',
-        component: () => import('@/views/customer/edit-customer/index'),
-        name: 'EditCustomer',
-        hidden: true,
-        meta: { title: 'editCustomer', icon: 'el-icon-mobile', noCache: true, breadcrumbTitle: 'editCustomerBreadcrumbTitle' }
-      }
-    ]
-  }
+  { path: '*', redirect: '/404', hidden: true }
 ]
 
 // export const originalAsyncRoutes = [

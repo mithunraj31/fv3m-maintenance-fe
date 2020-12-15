@@ -1,10 +1,10 @@
 <template>
   <div class="login-container">
     <div class="login-hero" :style="{ backgroundImage: 'url(' + require('@/assets/login-hero.jpg') + ')' }">
-      <el-card class="box-card">
+      <!-- <el-card class="box-card">
         <h3>{{ this.$t('login.heroTitle') }}</h3>
         <div v-html="this.$t('login.heroDescription')" />
-      </el-card>
+      </el-card> -->
     </div>
     <el-form
       ref="loginForm"
