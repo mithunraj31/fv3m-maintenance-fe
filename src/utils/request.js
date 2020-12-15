@@ -3,6 +3,16 @@ import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 
+function parseJwt(token) {
+  var base64Url = token.split('.')[1]
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+  var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+  }).join(''))
+
+  return JSON.parse(jsonPayload)
+}
+
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
@@ -19,6 +29,11 @@ service.interceptors.request.use(
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
+
+      const payload = parseJwt(store.getters.token)
+      if (Date.now() >= payload.exp * 1000) {
+        throw new Error('TOKEN_EXPIRED')
+      }
       config.headers['Authorization'] = `Bearer ${getToken()}`
     }
     return config
@@ -63,6 +78,11 @@ service.interceptors.response.use(
     }
   },
   error => {
+    if (error.message === 'TOKEN_EXPIRED') {
+      store.dispatch('user/logout').then(() => {
+        window.location.href = '/#/login'
+      })
+    }
     if (error.message !== 'CANCELLED_REQUEST_TOKEN') {
       Message({
         message: error.message,
